@@ -5,23 +5,26 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core" >
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1" />
 <title>Layout</title>
 	<STYLE type="text/css">
-  	 div { border: 1px solid; float: left; }
-  	 div { border: 1px solid; float: left; }
-  	 div { border: 1px solid; float: left; }
-  	 div { border: 1px solid; float: left; }
-  	 #hauptBox { background-color: grey; }
-  	 #navitationsBOx { background-color: red; }
+  	 #hauptBox { background-color: grey; 
+  	 			 top: 1;
+  	 			 right: 1;}
+  	 #navitationsBox { background-color: red; }
   	 #meldungBox { background-color: blue; }
   	 #inhaltBox { background.color: green; }
   	 </STYLE>
 </head>
 <body>
  <f:view>My Trade<br/></f:view>
-  <h:form>
-  </h:form>
+  	<h:form>
+  		<div id="hauptBox">
+ 			<div id="navigationsBox">Navigation</div>
+ 			<div id="meldungBox">Meldung</div>
+ 			<div id="InhaltBox">Inhalt</div>
+		</div>
+ 	</h:form>
 
 </body>
 </html>
