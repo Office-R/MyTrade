@@ -6,13 +6,17 @@
   xmlns:f="http://java.sun.com/jsf/core" >
  <head>
   <meta charset="UTF-8" />
-  <title>JSF Test</title>
+  <title>Login</title>
+  	<STYLE type="text/css">
+  	 div { border: 1px solid; float: left; }
+  	 </STYLE>
  </head>
  <body>
-  <f:view>JSF Test 4<br/></f:view>
+  <f:view>My Trade<br/></f:view>
   <h:form>
-   <h:inputText value="#{santisTime.time}">My Text Input:</h:inputText>
-   <h:commandButton value="Klick mich" /> 
+  	<div> <h2>Listenüberschrift</h2> </div>
+   	<h:inputText value="#{santisTime.time}">My Text Input:</h:inputText>
+   	<h:commandButton value="Klick mich" /> 
   </h:form>
   <h:outputLabel value="#{55+11*3}"></h:outputLabel>
  </body>
