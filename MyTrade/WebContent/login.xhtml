@@ -4,26 +4,34 @@
   xmlns  ="http://www.w3.org/1999/xhtml"
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core" >
- <head>
-  <meta charset="UTF-8" />
+<head>
+<meta charset="ISO-8859-1" />
   <title>Login</title>
-  	<STYLE type="text/css">
-  	 div { border: 1px solid; float: left; }
-  	 </STYLE>
  </head>
  <body>
   <f:view>My Trade<br/></f:view>
   <h:form>
   		<h1> Login </h1>
 		<table> 
-			<tr> 
-				<td>Inhalt</td> 
-			</tr> 
+			<tr>
+				<td>Benutzername</td>
+				<td> <h:inputText value="#{5}"></h:inputText>  </td>
+			</tr>
+			<tr>
+				<td>Passwort</td>
+				<td> <h:inputText value="#{3}"></h:inputText>  </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> <h:commandButton value="OK" />  </td>
+			</tr>
+			
 		</table>  
   
-   	<h:inputText value="#{santisTime.time}">My Text Input:</h:inputText>
-   	<h:commandButton value="Klick mich" /> 
+   	
+   	
+   	 <!--   <h:outputLabel value="#{55+11*3}"></h:outputLabel>  -->
   </h:form>
-  <h:outputLabel value="#{55+11*3}"></h:outputLabel>
+ 
  </body>
 </html>
