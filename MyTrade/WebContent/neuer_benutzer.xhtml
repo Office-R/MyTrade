@@ -1,10 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html>
+<html
+  xmlns  ="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core" >
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1" />
+<title>neuerBenutzer</title>
+ <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
-
+  	<h:form>
+  		<div id="hauptBox">
+ 			<div id="navigationsBox">
+	 			<div id="meinPortfolioLinkBox">Mein Portfolio</div>
+	 			<div id="offeneAuftraegeLinkBox">Offene Aufträge</div>
+	 			<div id="administrationLinkBox">Administration</div>
+	 			<div id="benuzerLinkBox">Benutzer</div>
+ 			</div>
+ 			<div id="meldungBox">Meldung</div>
+ 			<div id="inhaltBox">
+ 				<h1> Auftrag erfassen </h1>
+					<table> 
+						<tr>
+							<td>Name:</td>
+							<td> <h:inputText value="#{maxi}"></h:inputText> </td>
+						</tr>
+						<tr>
+							<td>Vorname:</td>
+							<td> <h:inputText value="#{muster}"></h:inputText>  </td>
+						</tr>
+						<tr>
+							<td>Login:</td>
+							<td> <h:inputText value="#{maxi96}"></h:inputText>  </td>
+						</tr>
+						<tr>
+							<td>Passwort:</td>
+							<td> <h:inputText value="#{nike45drache}"></h:inputText>  </td>
+						</tr>
+						<tr>
+							<td>Rolle:</td>
+							<td> <h:inputText value="#{3}"></h:inputText>  </td>
+						</tr>
+						<tr>
+							<td> <h:commandButton value="Zurück" /> </td>
+							<td> <h:commandButton value="OK" />  </td>
+						</tr>				
+					</table> 
+ 			</div>
+		</div>
+ 	</h:form>
 </body>
 </html>
