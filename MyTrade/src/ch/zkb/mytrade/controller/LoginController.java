@@ -14,14 +14,12 @@ public class LoginController {
 	public String password;
 	
 	public LoginController() {
-		System.out.println("Konstruktor LoginController");
 	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
-		System.out.println("setusername");
 	}
 	public String getPassword() {
 		return password;
@@ -32,9 +30,7 @@ public class LoginController {
 	
 	public String authentication()
 	{
-		System.out.println("yeah");
 		LoginDao loginDao = new LoginDao();
-//		return "login?faces-redirect=true";
 		return loginDao.authenticate(username, password);
 	}
 	

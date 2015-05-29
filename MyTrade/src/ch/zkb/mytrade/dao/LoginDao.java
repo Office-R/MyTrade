@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -26,12 +27,15 @@ public class LoginDao {
 
 		try {
 			Statement st = c1.createStatement();
-			ResultSet rs = st.executeQuery("SELECT user.user_id, user.name, "
-					                     + "user.vorname, user.kontostand, rolle.rolle FROM `user` "
-					                     + "JOIN rolle"
+			ResultSet rs = st.executeQuery("SELECT user.user_id, user.name, user.vorname, user.login, "
+					                     + "user.kontostand, rolle.rolle "
+					                     + "FROM user "
+					                     + "JOIN rolle "
 					                     + "ON user.fk_rolle=rolle.rolle_id "
-					                     + "WHERE user.login=" + username + " "
-					                     + "AND user.password=md5(" + password + ")"); 
+					                     + "WHERE user.login= \""+ username + "\" "
+					                     + "AND user.password=md5(\"" + password + "\")"); 
+
+			
 			while(rs.next()) {
 				UserModel user = new UserModel();
 				user.setLogin   (rs.getString("user.login"));
@@ -41,15 +45,13 @@ public class LoginDao {
 				user.setVorname (rs.getString("user.vorname"));
 				
 				ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-				HashMap<String, Object> sessionMap = (HashMap) externalContext.getSessionMap();
-				System.out.println("Login DAO authenticate");
-//				sessionMap.put("currentUser", user);
-				
+				Map<String, Object> sessionMap =  externalContext.getSessionMap();
+				sessionMap.put("currentUser", user);
+				return "mein_portfolio?faces-redirect=true";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return "mein_portfolio?faces-redirect=true";
+		return "login?faces-redirect=true";
 	}
 }
