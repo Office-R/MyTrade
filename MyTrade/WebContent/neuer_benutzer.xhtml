@@ -24,23 +24,25 @@
 					<table> 
 						<tr>
 							<td>Name:</td>
-							<td> <h:inputText value="#{maxi}"></h:inputText> </td>
+							<td> <h:inputText value="#{neuerBenutzerController.name}"></h:inputText> </td>
 						</tr>
 						<tr>
 							<td>Vorname:</td>
-							<td> <h:inputText value="#{muster}"></h:inputText>  </td>
+							<td> <h:inputText value="#{neuerBenutzerController.vorname}"></h:inputText>  </td>
 						</tr>
 						<tr>
 							<td>Login:</td>
-							<td> <h:inputText value="#{maxi96}"></h:inputText>  </td>
+							<td> <h:inputText value="#{neuerBenutzerController.login}"></h:inputText>  </td>
 						</tr>
 						<tr>
 							<td>Passwort:</td>
-							<td> <h:inputText value="#{nike45drache}"></h:inputText>  </td>
+							<td> <h:inputText value="#{neuerBenutzerController.passwort}"></h:inputText>  </td>
 						</tr>
 						<tr>
 							<td>Rolle:</td>
-							<td> <h:inputText value="#{3}"></h:inputText>  </td>
+							<td> <h:selectOneMenu value="#{neuerBenutzerController.rolle}" >
+                    <f:selectItems value="#{neuerBenutzerController.rollen}" />
+                </h:selectOneMenu>  </td>
 						</tr>
 						<tr>
 							<td> <h:commandButton value="Zurück" /> </td>
