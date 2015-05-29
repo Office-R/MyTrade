@@ -29,7 +29,7 @@ public class MeinPortfolioDao {
 
 		try {
 			Statement st = c1.createStatement();
-			ResultSet rs = st.executeQuery("SELECT symbol.symbol, aktie.name, aktie.dividende, user.login "
+			ResultSet rs = st.executeQuery("SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login "
 					                     + "FROM aktie "
 					                     + "JOIN symbol "
 					                     + "ON aktie.fk_symbol=symbol.symbol_id "
@@ -40,7 +40,7 @@ public class MeinPortfolioDao {
 			
 			while(rs.next()) {
 				AktieModel aktie = new AktieModel();
-				aktie.setAkite_id     (rs.getInt("aktie.aktie_id"));
+				aktie.setAktie_id     (rs.getInt("aktie.aktie_id"));
 				aktie.setDividende    (rs.getDouble("aktie.dividende"));
 				aktie.setName         (rs.getString("aktie.name"));
 				aktie.setNominalpreis (rs.getDouble("aktie.nominalpreis"));
