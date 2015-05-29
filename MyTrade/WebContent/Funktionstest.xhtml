@@ -12,7 +12,9 @@
 	<h3>JSF Debugging</h3>
 	<p>
 		<h:form>
-			<h:commandButton value="Ein Datensatz zum Mitnehmen bitte" action="#{sqlDao.testabc}"></h:commandButton>
+		  <h:inputText value="#{loginController.username}"></h:inputText>
+		  <h:inputText value="#{loginController.password}"></h:inputText>
+	      <h:commandButton value="Ein Datensatz zum Mitnehmen bitte" action="#{loginController.authenticate}"></h:commandButton>
 		</h:form>
 	</p>
 	<ui:debug

@@ -1,10 +1,9 @@
 package ch.zkb.mytrade.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.faces.context.ExternalContext;
@@ -20,21 +19,28 @@ public class LoginDao {
 	}
 	public synchronized String authenticate(String username, String password)
 	{
+		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
 		
 		Connection c1 = pooling.getConnection();
 
 		try {
-			Statement st = c1.createStatement();
-			ResultSet rs = st.executeQuery("SELECT user.user_id, user.name, user.vorname, user.login, "
+			String sqlQuery = "SELECT user.user_id, user.name, user.vorname, user.login, "
 					                     + "user.kontostand, rolle.rolle "
 					                     + "FROM user "
 					                     + "JOIN rolle "
 					                     + "ON user.fk_rolle=rolle.rolle_id "
-					                     + "WHERE user.login= \""+ username + "\" "
-					                     + "AND user.password=md5(\"" + password + "\")"); 
+					                     + "WHERE user.login=? "
+					                     + "AND user.password=md5(?)"; 
 
+			prepStmt = c1.prepareStatement(sqlQuery);
+			
+			prepStmt.setString(1, username);
+			prepStmt.setString(2, password);
+			
+			ResultSet rs = prepStmt.executeQuery();
+			
 			
 			while(rs.next()) {
 				UserModel user = new UserModel();
