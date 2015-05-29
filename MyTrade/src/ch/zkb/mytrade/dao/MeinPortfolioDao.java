@@ -30,7 +30,7 @@ public class MeinPortfolioDao {
 
 		try {
 			Statement st = c1.createStatement();
-			ResultSet rs = st.executeQuery("SELECT symbol.symbol, aktie.name, aktie.dividende, user.login "
+			ResultSet rs = st.executeQuery("SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login "
 					                     + "FROM aktie "
 					                     + "JOIN symbol "
 					                     + "ON aktie.fk_symbol=symbol.symbol_id "
