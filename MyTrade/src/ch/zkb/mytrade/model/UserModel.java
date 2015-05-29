@@ -7,6 +7,7 @@ public class UserModel {
 	private String vorname;
 	private String login;
 	private String rolle;
+	private String passsword;
 	public UserModel() {
 	}
 	public int getUser_id() {
@@ -38,6 +39,12 @@ public class UserModel {
 	}
 	public void setRolle(String rolle) {
 		this.rolle = rolle;
+	}
+	public String getPasssword() {
+		return passsword;
+	}
+	public void setPasssword(String passsword) {
+		this.passsword = passsword;
 	}
 	
 	
