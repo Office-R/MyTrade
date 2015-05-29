@@ -8,6 +8,7 @@ public class AuftragModel {
 	String login;
 	double preis;
 	double kontostand;
+	boolean isBesitzer;
 	
 	public int getAuftrag_id() {
 		return auftrag_id;
