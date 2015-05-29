@@ -25,7 +25,7 @@ public class NeuerBenutzerController {
 	}
 
 	public void setRolle(Rolle rolle) {
-		System.out.println("geht durch 3");
+		System.out.println("geht durch 3 " + rolle);
 		neuerBenutzer.setRolle(rolle);
 	}
 
