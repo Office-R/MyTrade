@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import ch.zkb.mytrade.dao.NeuerBenutzerDao;
 import ch.zkb.mytrade.model.NeuerBenutzerModel;
 import ch.zkb.mytrade.model.Rolle;
 
@@ -14,6 +15,7 @@ import ch.zkb.mytrade.model.Rolle;
 public class NeuerBenutzerController {
 
 	private NeuerBenutzerModel neuerBenutzer;
+	private NeuerBenutzerDao neuerBenutzerDao;
 
 	public String getName() {
 		return neuerBenutzer.getName();
@@ -74,6 +76,7 @@ public class NeuerBenutzerController {
 	// }
 
 	public NeuerBenutzerController() {
+		neuerBenutzer = new NeuerBenutzerModel();
 		System.out.println("geht durch 4");
 		setNeuerBenutzer(new NeuerBenutzerModel());
 	}
@@ -86,4 +89,24 @@ public class NeuerBenutzerController {
 		this.neuerBenutzer = neuerBenutzer;
 
 	}
+
+	public NeuerBenutzerDao getNeuerBenutzerDao() {
+		return neuerBenutzerDao;
+	}
+
+	public void setNeuerBenutzerDao(NeuerBenutzerDao neuerBenutzerDao) {
+		this.neuerBenutzerDao = neuerBenutzerDao;
+	}
+	
+	public String zurueck(){
+		return "admin?faces-redirect=true";
+	}
+	
+	
+	public void benutzerspeichern() {
+		
+		neuerBenutzerDao = new NeuerBenutzerDao();
+		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(), neuerBenutzer.getVorname(), neuerBenutzer.getLogin(), neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
+	}
+	
 }

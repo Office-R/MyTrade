@@ -4,43 +4,49 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.model.Rolle;
-import ch.zkb.mytrade.model.UserModel;
+
 
 public class NeuerBenutzerDao {
 
-	public synchronized String authenticate(String name, String vorname, String login, String Passwort, Rolle rolle)
+	public synchronized String neuerBenutzer(String name, String vorname, String login, String passwort, Rolle rolle)
 	{
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
+		int rolleI = 0;
 		
 		Connection c1 = pooling.getConnection();
 
 		try {
-			String sqlQuery = "INSERT user.user_iD, user.name, user.vorname, user.login, "
-					                     + "user.kontostand, rolle.rolle "
-					                     + "FROM user "
-					                     + "JOIN rolle "
-					                     + "ON user.fk_rolle=rolle.rolle_id "
-					                     + "WHERE user.login=? "
-					                     + "AND user.password=md5(?)"; 
+			String sqlQuery = "INSERT INTO user (user.name, user.vorname, user.login, user.password, user.rolle) "
+					+ "VALUES (?, ?, ?, ?, ?)" ;
 
 			prepStmt = c1.prepareStatement(sqlQuery);
 			
-			prepStmt.setString(1, username);
-			prepStmt.setString(2, password);
+			prepStmt.setString(1, name);
+			prepStmt.setString(2, vorname);
+			prepStmt.setString(3, login);
+			prepStmt.setString(4, passwort);
 			
-			ResultSet rs = prepStmt.executeQuery();
+			if(rolle.equals(Rolle.ADMINISTRATOR)){
+				rolleI = 1;
+			} else {
+				rolleI = 2;
+			}
+			
+			prepStmt.setInt(5, rolleI);
+			if(prepStmt.execute()){
+				System.out.println("hat geklappt");
+			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "login?faces-redirect=true";
+		System.out.println("ging durch DB");
+		return "meinPortfolio?faces-redirect=true";
 	}
 }
