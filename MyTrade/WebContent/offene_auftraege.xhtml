@@ -10,7 +10,6 @@
  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
-  	<h:form>
   		<div id="hauptBox">
  			<div id="navigationsBox" class="menuschrift">
 	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
@@ -20,22 +19,31 @@
  			</div>
  			<div id="meldungBox">Meldung</div>
  			<div id="inhaltBox">
- 				<table>
-	 				<tr>
-						<th>Symbol</th>
-						<th>Aktie</th>
-						<th>Preis(CHF)</th>
-						<th>Aktionen</th>
-					</tr>
-					<tr>
-						<td>CSGN</td>
-						<td>Credit Suisse Group</td>
-						<td>20</td>
-						<td>kaufen</td>
-					</tr>
-				</table>
+ 				<h:dataTable value="${offeneAuftraegeController.offeneAuftraege.auftragListe}" border="1"
+				var="stock" emptyMessage="Keine Aktien vorhanden">
+
+				<h:column sortBy="${stock.symbol}">
+					<f:facet name="header">Symbol</f:facet>
+					<h:outputText value="${stock.symbol}" />
+				</h:column>
+
+				<h:column sortBy="${stock.aktie}">
+					<f:facet name="header">Aktie</f:facet>
+					<h:outputText value="${stock.aktie}" />
+				</h:column>
+				
+				<h:column sortBy="${stock.preis}">
+					<f:facet name="header">Preis</f:facet>
+					<h:outputText value="${stock.preis}" />
+				</h:column>
+				
+				<h:column sortBy="${stock.isBesitzer}">
+					<f:facet name="header">Aktion</f:facet>
+					<h:outputText value="${stock.getAktion}" />
+				</h:column>
+
+			</h:dataTable>
  			</div>
 		</div>
- 	</h:form>
 </body>
 </html>

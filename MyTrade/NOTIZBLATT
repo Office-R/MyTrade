@@ -18,3 +18,7 @@
 	JOIN user
 	ON aktie.fk_user = user.user_id
 	WHERE user.login ="gwen";
+	
+	
+	====================INSERT BEISPIEL==============================================
+INSERT INTO `mydb`.`user` (`user_id`, `name`, `vorname`, `login`, `password`, `kontostand`, `fk_rolle`) VALUES (1, 'Daw', 'Gabriel', 'gabriel', '5f4dcc3b5aa765d61d8327deb882cf99', 10000, 1);

@@ -1,7 +1,7 @@
 package ch.zkb.mytrade.model;
 
 public class AktieModel {
-	private int       akite_id;
+	private int       aktie_id;
 	private String    name;
 	private double    nominalpreis;
 	private double    dividende;
@@ -12,12 +12,12 @@ public class AktieModel {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getAkite_id() {
-		return akite_id;
+	public int getAktie_id() {
+		return aktie_id;
 	}
 
-	public void setAkite_id(int akite_id) {
-		this.akite_id = akite_id;
+	public void setAktie_id(int akite_id) {
+		this.aktie_id = akite_id;
 	}
 
 	public String getName() {

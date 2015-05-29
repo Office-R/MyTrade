@@ -1,50 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html
-  xmlns  ="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <title>meinPortfolio</title>
- <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
 
-  		<div id="hauptBox">
- 			<div id="navigationsBox" class="menuschrift">
-	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
-	 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin.xhtml">Administration </a></div>
-	 			<div id="benuzerLinkBox">Benutzer</div>
- 			</div>
- 			<div id="meldungBox">Meldung</div>
- 			<div id="inhaltBox">
-			
-				<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}" var="stock"
-	   			styleClass="order-table"
-	   			headerClass="order-table-header"
-	   			rowClasses="order-table-odd-row,order-table-even-row"
-	   			>
-	 		
-	    			<h:column>
-	    				<!-- column header -->
-	    				<f:facet name="header">Symbol</f:facet>
-	    				<!-- row record -->
-	    				#{stock.symbol}
-	    			</h:column>
-	 
-	    			<h:column>
-	    				<f:facet name="header">Aktie</f:facet>
-	    				#{stock.name}
-	    			</h:column>
-	 
-	    			<h:column>
-	    				<f:facet name="header">letze Dividende</f:facet>
-	    				#{stock.dividende}
-	    			</h:column>
-	 
-	    		</h:dataTable>
- 			</div>
+	<div id="hauptBox">
+		<div id="navigationsBox" class="menuschrift">
+			<div id="meinPortfolioLinkBox">
+				<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+			</div>
+			<div id="offeneAuftraegeLinkBox">
+				<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+			</div>
+			<div id="administrationLinkBox">
+				<a href="admin.xhtml">Administration </a>
+			</div>
+			<div id="benuzerLinkBox">Benutzer</div>
+
+			<div id="hauptBox">
+				<div id="meldungBox">Meldung</div>
+				<div id="inhaltBox"></div>
+				<div id="navigationsBox" class="menuschrift">
+					<div id="meinPortfolioLinkBox">
+						<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+					</div>
+					<div id="offeneAuftraegeLinkBox">
+						<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+					</div>
+					<div id="administrationLinkBox">
+						<a href="admin.xhtml">Administration </a>
+					</div>
+					<div id="benuzerLinkBox">Benutzer</div>
+				</div>
+				<div id="meldungBox">Meldung</div>
+				<div id="inhaltBox">
+
+					<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
+						border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
+
+
+						<h:column>
+							<f:facet name="header">Symbol</f:facet>
+							<h:outputText value="${stock.symbol}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Aktie</f:facet>
+							<h:outputText value="${stock.name}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">letze Dividende</f:facet>
+							<h:outputText value="${stock.dividende}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">aktion</f:facet>
+							<h:form>
+								<h:commandButton value="Verkaufen"
+									action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
+							</h:form>
+						</h:column>
+
+					</h:dataTable>
+				</div>
+
+			</div>
+
 		</div>
+	</div>
 </body>
 </html>

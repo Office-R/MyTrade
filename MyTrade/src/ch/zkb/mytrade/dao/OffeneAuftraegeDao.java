@@ -13,12 +13,14 @@ import ch.zkb.mytrade.model.AuftragModel;
 @ManagedBean
 @SessionScoped
 public class OffeneAuftraegeDao {
+	ArrayList<AuftragModel> auftragListe;
 
 	public OffeneAuftraegeDao() {
-
+		auftragListe = new ArrayList<AuftragModel>();
 	}
 
-	public ArrayList<AuftragModel> getOffeneAuftraege() {
+
+	public void getOffeneAuftraege() {
 
 		Connection con;
 		ConnectionPooling pooling;
@@ -27,7 +29,7 @@ public class OffeneAuftraegeDao {
 		con = pooling.getConnection();
 		PreparedStatement prepStmt;
 		ResultSet resultSet;
-		ArrayList<AuftragModel> auftragListe = new ArrayList<AuftragModel>();
+
 		String sqlQuery;
 		try {
 
@@ -53,6 +55,7 @@ public class OffeneAuftraegeDao {
 				auftrag.setSymbol(resultSet.getString("symbol.symbol"));
 				auftrag.setLogin(resultSet.getString("user.login"));
 				auftrag.setKontostand(resultSet.getDouble("user.kontostand"));
+				auftrag.setBesitzer();
 
 				auftragListe.add(auftrag);
 
@@ -65,6 +68,13 @@ public class OffeneAuftraegeDao {
 			e.printStackTrace();
 
 		}
+	}
+
+	public ArrayList<AuftragModel> getAuftragListe() {
 		return auftragListe;
+	}
+
+	public void setAuftragListe(ArrayList<AuftragModel> auftragListe) {
+		this.auftragListe = auftragListe;
 	}
 }
