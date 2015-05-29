@@ -16,9 +16,34 @@ public class Test {
 		}
 	}
 
+<<<<<<< HEAD
+/*
+	-----SQL STATEMENT FÜR OFFENE POSITIONEN ANZEIGEN------
+=======
 	
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
+	SELECT auftrag.preis, aktie.name, aktie.aktie_id, symbol.symbol, user.login, user.kontostand FROM auftrag
+	JOIN aktie
+	ON auftrag.fk_aktie = aktie.aktie_id
+	JOIN symbol
+	ON aktie.fk_symbol = symbol.symbol_id
+	JOIN user
+	ON aktie.fk_user = user.user_id;
 
+	------Statement für portfolio anzeigen---------
+
+	SELECT symbol.symbol, aktie.name, aktie.dividende, user.login FROM aktie
+	JOIN symbol
+	ON aktie.fk_symbol = symbol.symbol_id
+	JOIN user
+	ON aktie.fk_user = user.user_id
+	WHERE user.login ="gwen";
+*/
+=======
+
+>>>>>>> refs/remotes/origin/master
 	void top() throws Exception {
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
