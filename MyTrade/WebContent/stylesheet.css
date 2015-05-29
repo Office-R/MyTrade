@@ -58,4 +58,28 @@
   	 						width: 200px;
   	 			 			height: 30px;
   	 			 	   		}
+  	 .menuschrift a:link {
+							font-family:arial;
+							font-size:medium;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:hover {
+							font-family:arial;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:visited {
+							font-family:medium;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:activ {
+							font-family:arial;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
 
