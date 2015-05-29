@@ -16,7 +16,7 @@ public class Test {
 		}
 	}
 
-	
+/*
 	-----SQL STATEMENT FÜR OFFENE POSITIONEN ANZEIGEN------
 
 	SELECT auftrag.preis, aktie.name, aktie.aktie_id, symbol.symbol, user.login, user.kontostand FROM auftrag
@@ -35,7 +35,7 @@ public class Test {
 	JOIN user
 	ON aktie.fk_user = user.user_id
 	WHERE user.login ="gwen";
-
+*/
 	void top() throws Exception {
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
