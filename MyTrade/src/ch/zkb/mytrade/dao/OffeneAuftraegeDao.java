@@ -72,8 +72,12 @@ public class OffeneAuftraegeDao {
 	public ArrayList<AuftragModel> getAuftragListe() {
 		return auftragListe;
 	}
+<<<<<<< HEAD
 
 	public void setAuftragListe(ArrayList<AuftragModel> auftragListe) {
 		this.auftragListe = auftragListe;
 	}
+=======
+	
+>>>>>>> branch 'master' of https://github.com/Office-R/MyTrade.git
 }
