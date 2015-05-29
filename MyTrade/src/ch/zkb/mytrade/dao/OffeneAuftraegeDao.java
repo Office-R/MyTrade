@@ -55,6 +55,7 @@ public class OffeneAuftraegeDao {
 				auftrag.setSymbol(resultSet.getString("symbol.symbol"));
 				auftrag.setLogin(resultSet.getString("user.login"));
 				auftrag.setKontostand(resultSet.getDouble("user.kontostand"));
+				auftrag.setBesitzer();
 
 				auftragListe.add(auftrag);
 

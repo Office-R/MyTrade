@@ -22,19 +22,24 @@
  				<h:dataTable value="${offeneAuftraegeController.offeneAuftraege.auftragListe}" border="1"
 				var="stock" emptyMessage="Keine Aktien vorhanden">
 
-				<h:column sortBy="${aktie.symbol}">
+				<h:column sortBy="${stock.symbol}">
 					<f:facet name="header">Symbol</f:facet>
 					<h:outputText value="${stock.symbol}" />
 				</h:column>
 
-				<h:column sortBy="${aktie.aktie}">
+				<h:column sortBy="${stock.aktie}">
 					<f:facet name="header">Aktie</f:facet>
 					<h:outputText value="${stock.aktie}" />
 				</h:column>
 				
-				<h:column sortBy="${aktie.preis}">
+				<h:column sortBy="${stock.preis}">
 					<f:facet name="header">Preis</f:facet>
 					<h:outputText value="${stock.preis}" />
+				</h:column>
+				
+				<h:column sortBy="${stock.isBesitzer}">
+					<f:facet name="header">Aktion</f:facet>
+					<h:outputText value="${stock.getAktion}" />
 				</h:column>
 
 			</h:dataTable>

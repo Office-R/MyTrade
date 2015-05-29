@@ -1,15 +1,22 @@
 package ch.zkb.mytrade.model;
 
+import javax.faces.context.FacesContext;
+
 public class AuftragModel {
-	int auftrag_id;
-	int aktie_id;
-	String symbol;
-	String aktie;
-	String login;
-	double preis;
-	double kontostand;
-	boolean isBesitzer;
-	
+	private int auftrag_id;
+	private int aktie_id;
+	private String symbol;
+	private String aktie;
+	private String login;
+	private double preis;
+	private double kontostand;
+	String currentUserLogin;
+	private boolean isBesitzer;
+
+	public AuftragModel() {
+
+	}
+
 	public int getAuftrag_id() {
 		return auftrag_id;
 	}
@@ -66,8 +73,25 @@ public class AuftragModel {
 		this.kontostand = kontostand;
 	}
 
-	public AuftragModel() {
+	public boolean setBesitzer() {
+		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
+                .getSessionMap().get("currentUser");
+		currentUserLogin = currentUser.getLogin();
 		
+		if (currentUserLogin.equals(this.login)){
+			this.isBesitzer = true;
+		}
+		else{
+			this.isBesitzer = false;	
+		}
+		return isBesitzer;
 	}
-
+	
+	public String getAktion(){
+		if(this.isBesitzer){
+			return "stornieren";
+		}
+		return "kaufen";
+	}
+		
 }
