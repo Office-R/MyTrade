@@ -20,7 +20,6 @@ public class MeinPortfolioController {
 	
 	
 	public MeinPortfolioDao getPortfolioDao() {
-		System.out.println("getPortFolioDao");
 		return portfolioDao;
 	}
 
