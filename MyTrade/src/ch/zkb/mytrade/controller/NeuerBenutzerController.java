@@ -12,8 +12,9 @@ import ch.zkb.mytrade.model.Rolle;
 @ManagedBean
 @SessionScoped
 public class NeuerBenutzerController {
-	
+
 	private NeuerBenutzerModel neuerBenutzer;
+
 	public String getName() {
 		return neuerBenutzer.getName();
 	}
@@ -56,39 +57,33 @@ public class NeuerBenutzerController {
 		neuerBenutzer.setPasswort(passwort);
 	}
 
-
 	private HashMap<String, Rolle> rollen;
-	
-	
-	
-	
+
 	public Map<String, Rolle> getRollen() {
 		System.out.println("geht durch 1");
 		rollen = new HashMap<String, Rolle>();
-        
-        rollen.put("Administrator", Rolle.ADMINISTRATOR);
-        rollen.put("Trader", Rolle.TRADER);
 
-         return rollen;
+		rollen.put("Administrator", Rolle.ADMINISTRATOR);
+		rollen.put("Trader", Rolle.TRADER);
+
+		return rollen;
 	}
 
-//	public void setRollen(HashMap<String, Rolle> rollen) {
-//		this.rollen = rollen;
-//	}
+	// public void setRollen(HashMap<String, Rolle> rollen) {
+	// this.rollen = rollen;
+	// }
 
-	
-public NeuerBenutzerController(){
-	System.out.println("geht durch 4");
-	setNeuerBenutzer(new NeuerBenutzerModel());
-}
+	public NeuerBenutzerController() {
+		System.out.println("geht durch 4");
+		setNeuerBenutzer(new NeuerBenutzerModel());
+	}
 
-public NeuerBenutzerModel getNeuerBenutzer() {
-	return neuerBenutzer;
-}
+	public NeuerBenutzerModel getNeuerBenutzer() {
+		return neuerBenutzer;
+	}
 
-public void setNeuerBenutzer(NeuerBenutzerModel neuerBenutzer) {
-	this.neuerBenutzer = neuerBenutzer;
-	
-	
-}
+	public void setNeuerBenutzer(NeuerBenutzerModel neuerBenutzer) {
+		this.neuerBenutzer = neuerBenutzer;
+
+	}
 }
