@@ -13,13 +13,18 @@ import ch.zkb.mytrade.model.AuftragModel;
 public class OffeneAuftraegeController {
 	
 	private OffeneAuftraegeDao offeneAuftraege;
+	
 	public OffeneAuftraegeController() {
 		offeneAuftraege = new OffeneAuftraegeDao();
+		offeneAuftraege.getOffeneAuftraege();
 	}
 
-	public ArrayList<AuftragModel> loadAuftraege()
-	{
-		return offeneAuftraege.getOffeneAuftraege();
+	public OffeneAuftraegeDao getOffeneAuftraege() {
+		return offeneAuftraege;
+	}
+
+	public void setOffeneAuftraege(OffeneAuftraegeDao offeneAuftraege) {
+		this.offeneAuftraege = offeneAuftraege;
 	}
 
 }

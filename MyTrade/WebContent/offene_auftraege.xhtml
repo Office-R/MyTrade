@@ -19,30 +19,25 @@
  			</div>
  			<div id="meldungBox">Meldung</div>
  			<div id="inhaltBox">
- 				<h:dataTable value="${offeneAuftraegeController.loadAuftraege}" var="auftr"
-	   			styleClass="order-table"
-	   			headerClass="order-table-header"
-	   			rowClasses="order-table-odd-row,order-table-even-row"
-	   			>
-	 		
-	    			<h:column>
-	    				<!-- column header -->
-	    				<f:facet name="header">Symbol</f:facet>
-	    				<!-- row record -->
-	    				#{auftr.symbol}
-	    			</h:column>
-	 
-	    			<h:column>
-	    				<f:facet name="header">Aktie</f:facet>
-	    				#{auftr.aktie}
-	    			</h:column>
-	 
-	    			<h:column>
-	    				<f:facet name="header">Preis</f:facet>
-	    				#{auftr.preis}
-	    			</h:column>
-	 
-	    		</h:dataTable>
+ 				<h:dataTable value="${offeneAuftraegeController.offeneAuftraege.auftragListe}" border="1"
+				var="stock" emptyMessage="Keine Aktien vorhanden">
+
+				<h:column sortBy="${aktie.symbol}">
+					<f:facet name="header">Symbol</f:facet>
+					<h:outputText value="${stock.symbol}" />
+				</h:column>
+
+				<h:column sortBy="${aktie.aktie}">
+					<f:facet name="header">Aktie</f:facet>
+					<h:outputText value="${stock.aktie}" />
+				</h:column>
+				
+				<h:column sortBy="${aktie.preis}">
+					<f:facet name="header">Preis</f:facet>
+					<h:outputText value="${stock.preis}" />
+				</h:column>
+
+			</h:dataTable>
  			</div>
 		</div>
 </body>
