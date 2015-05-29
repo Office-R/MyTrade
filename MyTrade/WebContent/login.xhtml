@@ -7,30 +7,40 @@
 <head>
 <meta charset="ISO-8859-1" />
   <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
  </head>
  <body>
-  <f:view>My Trade<br/></f:view>
+
   <h:form>
-  		<h1> Login </h1>
-		<table> 
-			<tr>
-				<td>Benutzername</td>
-				<td> <h:inputText value="#{5}"></h:inputText>  </td>
-			</tr>
-			<tr>
-				<td>Passwort</td>
-				<td> <h:inputText value="#{3}"></h:inputText>  </td>
-			</tr>
-			<tr>
-				<td></td>
-				<td> <h:commandButton value="OK" />  </td>
-			</tr>
-			
-		</table>  
-  
+  	<div id="hauptBox">
+  		<div id="navigationsBox">
+  			<div id="meinPortfolioLinkBox">Mein Portfolio</div>
+	 		<div id="offeneAuftraegeLinkBox">Offene Aufträge</div>
+	 		<div id="administrationLinkBox">Administration</div>
+	 		<div id="benuzerLinkBox">Benutzer</div>
+	 	</div>
+  		<div id="meldungBox">Meldung</div>
+  		<div id="inhaltBox">
+	  		<h1> Login </h1>
+	  		<h:form>
+			<table> 
+				<tr>
+					<td>Benutzername:</td>
+					<td> <h:inputText value="#{loginController.username}"></h:inputText>  </td>
+				</tr>
+				<tr>
+					<td>Passwort:</td>
+					<td> <h:inputText value="#{loginController.password}"></h:inputText>  </td>
+				</tr>
+				<tr>
+					<td></td>
+					<td> <h:commandButton value="Login" action="#{loginController.authenticate}"></h:commandButton>  </td>
+				</tr>				
+			</table>  
+			</h:form>
+		</div>
    	
-   	
-   	 <!--   <h:outputLabel value="#{55+11*3}"></h:outputLabel>  -->
+   	 </div>
   </h:form>
  
  </body>

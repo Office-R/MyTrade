@@ -1,33 +1,85 @@
-  	 #hauptBox  		{	background-color: grey; 
-  	 			 			top: 100px;
-  	 						right: 100px;
+  	 html {
+							background-color:rgb(250, 252, 253);
+							font-family: arial;
+							}
+  	 #hauptBox {			margin:0 auto;
+							position: relative;
+  	 						background-color: rgb(161, 189, 191);
+  	 						top: 50px;
   	 						width: 1000px;
-  	 						height: 900px; }
-  	 #navigationsBox  	{	background-color: red;
-  	 						margin-top: 50px;
+  	 						height: 900px; 
+  	 						}
+  	 #navigationsBox {		background-color: rgb(143, 176, 179);
+  	 						position: absolute;
+  	 						left: 0px;
+  	 						top: 40px;
   	 						width: 1000px;
-  	 			 			height: 40px;  }
-  	 #meldungBox  		{	background-color: blue;
-  	 			   			width: 1000px;
-  	 			   			height: 100px;  }
-  	 #inhaltBox  		{	background-color: green; 
-  	 			  			width: 1000px;
-  	 			 			height: 500px; }
-  	 #meinPortfolioLinkBox {background-color: red;
-  	 				   		margin-top: 50px;
-  	 				   		width: 250px;
-  	 			 	   		height: 40px;}
-  	 #offeneAuftraegeLinkBox {background-color: red;
-  	 				   		margin-top: 50px;
-  	 				   		width: 250px;
-  	 			 	   		height: 40px;}
-  	 #administrationLinkBox {background-color: red;
-  	 				   		margin-top: 50px;
-  	 				   		width: 250px;
-  	 			 	   		height: 40px;}
-  	 #benuzerLinkBox 		{background-color: red;
-  	 				   		margin-top: 50px;
-  	 				   		width: 250px;
-  	 			 	   		height: 40px;
+  	 			 			height: 50px;  	 			 			 
+  	 			 			}
+  	 #meldungBox {			background-color: rgb(212, 225, 226);
+  	 						position: absolute;
+  	 			   			left: 	0px;
+  	 						top: 120px;
+  	 						width: 	1000px;
+  	 			 			height: 100px;   
+  	 			   			}
+  	 #inhaltBox {			background-color: rgb(241, 245, 245); 
+  	 						position: absolute;
+  	 			  			left: 	10px;
+  	 						top: 240px;
+  	 						width: 	980px;
+  	 			 			height: 600px;
+  	 			 			}
+  	 #meinPortfolioLinkBox {background-color: rgb(212, 225, 226);
+  	 						position: absolute;
+  	 				   		top: 5px;
+  	 						left: 10px;
+  	 						width: 200px;
+  	 			 			height: 30px;
   	 			 	   		}
+  	 #offeneAuftraegeLinkBox {background-color: rgb(212, 225, 226);
+  	 						position: absolute;
+  	 				   		top: 5px;
+  	 						left: 220px;
+  	 						width: 200px;
+  	 			 			height: 30px;
+  	 			 	   		}
+  	 #administrationLinkBox {background-color:rgb(212, 225, 226);
+  	 						position: absolute;
+  	 				   		top: 5px;
+  	 						left: 430px;
+  	 						width: 200px;
+  	 			 			height: 30px;
+  	 			 	   		}
+  	 #benuzerLinkBox 		{background-color: rgb(212, 225, 226);
+  	 						position: absolute;
+  	 				   		top: 5px;
+  	 						left: 640px;
+  	 						width: 200px;
+  	 			 			height: 30px;
+  	 			 	   		}
+  	 .menuschrift a:link {
+							font-family:arial;
+							font-size:medium;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:hover {
+							font-family:arial;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:visited {
+							font-family:medium;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
+	.menuschrift a:activ {
+							font-family:arial;
+							font-size:large;
+							color:black;
+							text-decoration: none;
+	}
 
