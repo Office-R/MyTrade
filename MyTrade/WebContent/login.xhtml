@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
  </head>
  <body>
-  <f:view>My Trade<br/></f:view>
+
   <h:form>
   	<div id="hauptBox">
   		<div id="navigationsBox">
@@ -22,20 +22,22 @@
   		<div id="meldungBox">Meldung</div>
   		<div id="inhaltBox">
 	  		<h1> Login </h1>
+	  		<h:form>
 			<table> 
 				<tr>
 					<td>Benutzername:</td>
-					<td> <h:inputText value="#{maxi}"></h:inputText>  </td>
+					<td> <h:inputText value="#{loginController.username}"></h:inputText>  </td>
 				</tr>
 				<tr>
 					<td>Passwort:</td>
-					<td> <h:inputText value="#{1234}"></h:inputText>  </td>
+					<td> <h:inputText value="#{loginController.password}"></h:inputText>  </td>
 				</tr>
 				<tr>
 					<td></td>
-					<td> <h:commandButton value="OK" />  </td>
+					<td> <h:commandButton value="Login" action="#{loginController.authenticate}"></h:commandButton>  </td>
 				</tr>				
 			</table>  
+			</h:form>
 		</div>
    	
    	 </div>
