@@ -30,10 +30,11 @@ public class LoginController {
 		this.password = password;
 	}
 	
-	public String authenticate()
+	public String authentication()
 	{
 		System.out.println("yeah");
 		LoginDao loginDao = new LoginDao();
+//		return "login?faces-redirect=true";
 		return loginDao.authenticate(username, password);
 	}
 	
