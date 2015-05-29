@@ -3,6 +3,7 @@ package ch.zkb.mytrade.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.MeinPortfolioDao;
 
@@ -28,6 +29,12 @@ public class MeinPortfolioController {
 		this.portfolioDao = portfolioDao;
 	}
 
+	public String verkaufen(int id)
+	{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("neuerAuftragAktienId", id);
+		return "neuer_auftrag?faces-redirect=true";
+		
+	}
 
 	
 }
