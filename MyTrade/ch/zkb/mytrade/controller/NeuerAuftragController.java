@@ -2,6 +2,7 @@ package ch.zkb.mytrade.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.NeuerAuftragDao;
 @ManagedBean
@@ -9,8 +10,10 @@ import ch.zkb.mytrade.dao.NeuerAuftragDao;
 public class NeuerAuftragController {
 	
 	private NeuerAuftragDao neuerAuftragDao;
+	private int aktienId;
 	public NeuerAuftragController() {
 		neuerAuftragDao = new NeuerAuftragDao();
+		neuerAuftragDao.loadAktienProperties((Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("neuerAuftragAktienId"));
 	}
 	public NeuerAuftragDao getNeuerAuftragDao() {
 		return neuerAuftragDao;
@@ -18,7 +21,9 @@ public class NeuerAuftragController {
 	public void setNeuerAuftragDao(NeuerAuftragDao neuerAuftragDao) {
 		this.neuerAuftragDao = neuerAuftragDao;
 	}
-	
+	public void neuerAuftrag(){
+		this.neuerAuftragDao.neuerAuftrag();
+	}
 	
 	
 }

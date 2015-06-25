@@ -38,11 +38,9 @@ public class LoginDao {
 			
 			prepStmt.setString(1, username);
 			prepStmt.setString(2, password);
-			
 			ResultSet rs = prepStmt.executeQuery();
-			
-			
 			while(rs.next()) {
+				System.out.println(rs);
 				UserModel user = new UserModel();
 				user.setLogin   (rs.getString("user.login"));
 				user.setName    (rs.getString("user.name"));
@@ -58,6 +56,7 @@ public class LoginDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pooling.putConnection(c1);
 		return "login?faces-redirect=true";
 	}
 }

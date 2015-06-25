@@ -15,12 +15,16 @@ import ch.zkb.mytrade.model.UserModel;
 public class NeuerAuftragDao {
 
 	AktieModel aktie;
+	private double vkPreis;
+	private int amount;
 	public NeuerAuftragDao() {
 		
 	}
 	
 	public void loadAktienProperties(int aktie_id)
 	{
+		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentUser");
+		System.out.println("id: " + aktie_id);
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
@@ -29,21 +33,14 @@ public class NeuerAuftragDao {
 		String sqlQuery;
 		try {
 
-			sqlQuery = "SELECT auftrag.preis, aktie.name, aktie.aktie_id, symbol.symbol, user.login, user.kontostand FROM auftrag"
-					+ " JOIN aktie"
-					+ " ON auftrag.fk_aktie = aktie.aktie_id"
-					+ " JOIN symbol"
-					+ " ON aktie.fk_symbol = symbol.symbol_id"
-					+ " JOIN user" + " ON aktie.fk_user = user.user_id"
+			sqlQuery = "SELECT aktie.name,  aktie.aktie_id, aktie.nominalpreis, aktie.dividende FROM aktie"
 				    + " WHERE aktie.aktie_id=?";
 
 
 			prepStmt = c1.prepareStatement(sqlQuery);
-			
 			prepStmt.setInt(1, aktie_id);
-			
 			ResultSet rs = prepStmt.executeQuery();
-			
+			System.out.println(sqlQuery);
 			
 			while(rs.next()) {
 				aktie = new AktieModel();
@@ -51,7 +48,6 @@ public class NeuerAuftragDao {
 				aktie.setDividende(rs.getDouble("aktie.dividende"));
 				aktie.setName(rs.getString("aktie.name"));
 				aktie.setNominalpreis(rs.getDouble("aktie.nominalpreis"));
-				aktie.setSymbol(rs.getString("symbol.symbol"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,16 +66,12 @@ public class NeuerAuftragDao {
 		try {
 
 			sqlQuery = "SELECT COUNT(aktie.aktie_id) FROM aktie"
-					+ " WHERE aktie.name=?";
-
+					+ " WHERE aktie.name=?"
+					+ " AND aktie. ";
 
 			prepStmt = c1.prepareStatement(sqlQuery);
-			
 			prepStmt.setString(1, aktienName);
-			
 			ResultSet rs = prepStmt.executeQuery();
-			
-			
 			while(rs.next()) {
 				return rs.getInt("aktie.aktie_id");
 			}
@@ -91,7 +83,34 @@ public class NeuerAuftragDao {
 	
 	public void neuerAuftrag()
 	{
-		 
+		executeInsert();
+//		 int anzahlAktien = anzahlDerAktienImBesitz(aktie.getName());
+//		 if(amount <= anzahlAktien){
+//			 for (int i = 0; i < amount; i++){
+//				 
+//			 }
+//		 }
+	}
+	public void executeInsert()
+	{
+		PreparedStatement prepStmt;
+		ConnectionPooling pooling;
+		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
+		
+		Connection c1 = pooling.getConnection();
+		String sqlQuery;
+		try {
+
+			sqlQuery = "INSERT INTO auftrag (preis, fk_aktie) VALUES (?, ?)";
+			System.out.println(vkPreis + "" +  aktie.getAktie_id());
+			prepStmt = c1.prepareStatement(sqlQuery);
+			prepStmt.setDouble(1, vkPreis);
+			prepStmt.setInt(2, aktie.getAktie_id());
+			prepStmt.executeUpdate(sqlQuery);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public AktieModel getAktie() {
@@ -101,5 +120,22 @@ public class NeuerAuftragDao {
 	public void setAktie(AktieModel aktie) {
 		this.aktie = aktie;
 	}
+
+	public double getVkPreis() {
+		return vkPreis;
+	}
+
+	public void setVkPreis(double vkPreis) {
+		this.vkPreis = vkPreis;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
 	
 }
