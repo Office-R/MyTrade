@@ -2,6 +2,7 @@ package ch.zkb.mytrade.model;
 
 import javax.faces.context.FacesContext;
 
+
 public class AuftragModel {
 	private int auftrag_id;
 	private int aktie_id;
@@ -76,14 +77,19 @@ public class AuftragModel {
 	public boolean setBesitzer() {
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
                 .getSessionMap().get("currentUser");
-		currentUserLogin = currentUser.getLogin();
 		
-		if (currentUserLogin.equals(this.login)){
-			this.isBesitzer = true;
+		if (currentUser != null) {
+			currentUserLogin = currentUser.getLogin();
 		}
 		else{
-			this.isBesitzer = false;	
+			System.out.println("currentUser is null!");
 		}
+		
+		
+		this.isBesitzer = currentUserLogin.equals(this.login);
+		System.out.println(currentUser.getLogin());
+		System.out.println(this.login);
+		
 		return isBesitzer;
 	}
 	

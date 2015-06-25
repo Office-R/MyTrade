@@ -38,7 +38,7 @@ public class OffeneAuftraegeDao {
 					+ " ON auftrag.fk_aktie = aktie.aktie_id"
 					+ " JOIN symbol"
 					+ " ON aktie.fk_symbol = symbol.symbol_id"
-					+ " JOIN user" + " ON aktie.fk_user = user.user_id";
+					+ " JOIN user ON aktie.fk_user = user.user_id";
 
 			prepStmt = con.prepareStatement(sqlQuery);
 
@@ -48,7 +48,6 @@ public class OffeneAuftraegeDao {
 
 			while (resultSet.next()) {
 				AuftragModel auftrag = new AuftragModel();
-
 				auftrag.setPreis(resultSet.getDouble("auftrag.preis"));
 				auftrag.setAktie(resultSet.getString("aktie.name"));
 				auftrag.setAktie_id(resultSet.getInt("aktie.aktie_id"));
@@ -56,6 +55,10 @@ public class OffeneAuftraegeDao {
 				auftrag.setLogin(resultSet.getString("user.login"));
 				auftrag.setKontostand(resultSet.getDouble("user.kontostand"));
 				auftrag.setBesitzer();
+				System.out.println(resultSet.getString("aktie.name"));
+				System.out.println(auftrag.getAktion());
+			
+				
 
 				auftragListe.add(auftrag);
 
