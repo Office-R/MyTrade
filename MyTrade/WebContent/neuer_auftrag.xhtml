@@ -28,15 +28,15 @@
 				</tr>
 				<tr>
 					<td>Preis(CHF):</td>
-					<td> <h:inputText value="#{12.45}"></h:inputText>  </td>
+					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.vkPreis}"></h:inputText>  </td>
 				</tr>
 				<tr>
 					<td>Stückzahl(l-n):</td>
-					<td> <h:inputText value="#{1234}"></h:inputText>  </td>
+					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.amount}"></h:inputText>  </td>
 				</tr>
 				<tr>
 					<td> <h:commandButton value="Zurück" /> </td>
-					<td> <h:commandButton value="OK" />  </td>
+					<td> <h:commandButton value="verkaufen" action="#{neuerAuftragController.neuerAuftragDao.neuerAuftrag()}" />  </td>
 				</tr>				
 			</table> 
  			</div>
