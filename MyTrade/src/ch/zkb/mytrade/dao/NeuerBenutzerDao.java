@@ -42,10 +42,12 @@ public class NeuerBenutzerDao {
 				System.out.println("hat geklappt");
 			}
 			
-			
+			prepStmt.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pooling.putConnection(c1);
 		System.out.println("ging durch DB");
 		return "meinPortfolio?faces-redirect=true";
 	}

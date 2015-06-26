@@ -2,6 +2,8 @@ package ch.zkb.mytrade.model;
 
 import javax.faces.context.FacesContext;
 
+import ch.zkb.mytrade.dao.OffeneAuftraegeDao;
+
 
 public class AuftragModel {
 	private int auftrag_id;
@@ -11,8 +13,10 @@ public class AuftragModel {
 	private String login;
 	private double preis;
 	private double kontostand;
-	String currentUserLogin;
+	private String currentUserLogin;
 	private boolean isBesitzer;
+	private int besitzer_id;
+	private OffeneAuftraegeDao offeneAuftraegeDao;
 
 	public AuftragModel() {
 
@@ -82,7 +86,7 @@ public class AuftragModel {
 			currentUserLogin = currentUser.getLogin();
 		}
 		else{
-			System.out.println("currentUser is null!");
+			throw new NullPointerException();
 		}
 		
 		
@@ -102,13 +106,36 @@ public class AuftragModel {
 	
 	public String buyOrStorno(){
 		if (this.isBesitzer){
-			//stornieren
+			offeneAuftraegeDao.storno(this);
 			System.out.println("storniert!");
 		}else{
-			System.out.println("gekauft");
+			offeneAuftraegeDao.kauf(this);
+			System.out.println(this.getPreis());
+			System.out.println(this.getAuftrag_id());
+			System.out.println(this.getAktie_id());
+			System.out.println(this.getAktie());
+			
 			//kaufen	
 		}
 	return "mein_portfolio?faces-redirect=true";
 	}
+
+	public OffeneAuftraegeDao getOffeneAuftraegeDao() {
+		return offeneAuftraegeDao;
+	}
+
+	public void setOffeneAuftraegeDao(OffeneAuftraegeDao offeneAuftraegeDao) {
+		this.offeneAuftraegeDao = offeneAuftraegeDao;
+	}
+
+	public int getBesitzer_id() {
+		return besitzer_id;
+	}
+
+	public void setBesitzer_id(int besitzer_id) {
+		this.besitzer_id = besitzer_id;
+	}
+	
+	
 		
 }

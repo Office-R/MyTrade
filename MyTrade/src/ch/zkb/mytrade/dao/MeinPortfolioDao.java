@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.faces.context.FacesContext;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import ch.zkb.mytrade.model.AktieModel;
 import ch.zkb.mytrade.model.UserModel;
 
@@ -26,17 +28,19 @@ public class MeinPortfolioDao {
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
 				                                 .getSessionMap().get("currentUser");
 		Connection c1  = pooling.getConnection();
+		PreparedStatement prepStmt;
 
 		try {
-			Statement st = c1.createStatement();
-			ResultSet rs = st.executeQuery("SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login "
-					                     + "FROM aktie "
-					                     + "JOIN symbol "
-					                     + "ON aktie.fk_symbol=symbol.symbol_id "
-					                     + "JOIN user "
-					                     + "ON aktie.fk_user=user.user_id "
-					                     + "WHERE user.login=\"" + currentUser.getLogin() + "\""); 
-
+			String sqlQuery = "SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login "
+                    + "FROM aktie "
+                    + "JOIN symbol "
+                    + "ON aktie.fk_symbol=symbol.symbol_id "
+                    + "JOIN user "
+                    + "ON aktie.fk_user=user.user_id "
+                    + "WHERE user.login = ? ";
+			prepStmt = (PreparedStatement) c1.prepareStatement(sqlQuery);
+			prepStmt.setString(1, currentUser.getLogin());
+			ResultSet rs = prepStmt.executeQuery();
 			
 			while(rs.next()) {
 				AktieModel aktie = new AktieModel();
@@ -49,10 +53,12 @@ public class MeinPortfolioDao {
 				
 				aktien.add(aktie);
 			}
+			prepStmt.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		pooling.putConnection(c1);
 	}
 
 	public ArrayList<AktieModel> getAktien() {

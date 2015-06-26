@@ -39,7 +39,7 @@ public class LoginDao {
 			prepStmt.setString(1, username);
 			prepStmt.setString(2, password);
 			ResultSet rs = prepStmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				System.out.println(rs);
 				UserModel user = new UserModel();
 				user.setLogin   (rs.getString("user.login"));
@@ -52,7 +52,9 @@ public class LoginDao {
 				Map<String, Object> sessionMap =  externalContext.getSessionMap();
 				sessionMap.put("currentUser", user);
 				return "mein_portfolio?faces-redirect=true";
+				
 			}
+			prepStmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
