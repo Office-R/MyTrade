@@ -27,7 +27,7 @@
 				<div id="inhaltBox">
 
 				<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
-					border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
+					border="1"  var="stock" emptyMessage="Keine Aktien vorhanden">
 
 
 					<h:column>
@@ -48,7 +48,7 @@
 					<h:column>
 						<f:facet name="header">aktion</f:facet>
 						<h:form>
-							<h:commandButton value="Verkaufen"
+							<h:commandButton value="Verkaufen" 
 								action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
 						</h:form>
 					</h:column>

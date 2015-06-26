@@ -13,10 +13,10 @@ public class OffeneAuftraegeController {
 	
 	public OffeneAuftraegeController() {
 		offeneAuftraege = new OffeneAuftraegeDao();
-		offeneAuftraege.getOffeneAuftraege();
 	}
 
 	public OffeneAuftraegeDao getOffeneAuftraege() {
+		offeneAuftraege.getOffeneAuftraege();
 		return offeneAuftraege;
 	}
 
