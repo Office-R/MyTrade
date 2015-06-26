@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-
+@WebFilter("/faces/private/*")
 public class MyFilter implements Filter {
 	
 	
@@ -24,7 +24,7 @@ public class MyFilter implements Filter {
 
 /**
  * Versuche, die Session aus dem Request zu holen.
- * Ist das nicht mÃ¶glich, so gehe Ã¼ber den FacesContext.
+ * Ist das nicht möglich, so gehe über den FacesContext.
  */
 	HttpSession holeSessionVariable(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -40,7 +40,7 @@ public class MyFilter implements Filter {
 	}
 
 
-	String loginUrl = "/JSF_Login/faces/login.xhtml";
+	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
 
 	boolean istLoginURL(HttpServletRequest request) {
 		String reqString = request.getRequestURI();
@@ -87,7 +87,7 @@ public class MyFilter implements Filter {
 		Object user = holeSessionVariable(request).getAttribute("currentUser");
 		if(null == user && istOeffentlicheSeite(request)) {
 			debugOut("eigenerDoHTTPFilter(): Request ist freie Seite");
-			chain.doFilter(request, response); // jeder, da Ã¶ffentlich	
+			chain.doFilter(request, response); // jeder, da öffentlich	
 			return;
 		}
 
@@ -103,15 +103,13 @@ public class MyFilter implements Filter {
 	}
 
 
-	
-//	wichtig jetzt ändern
 	/**
-	 * PrÃ¼fe, ob die Seite ein Login braucht. "true", falls die Seite 
+	 * Prüfe, ob die Seite ein Login braucht. "true", falls die Seite 
 	 * ohne "Login" sichtbar sein darf.
 	 */
 	private boolean istOeffentlicheSeite(HttpServletRequest req) {
 		String reqString = req.getRequestURI();
-		return reqString.contains("Login.xhtml");
+		return reqString.contains("login.xhtml");
 	}
 
 
