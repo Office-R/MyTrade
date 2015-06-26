@@ -24,7 +24,7 @@
 			
 			<div id="hauptBox">
 				<div id="meldungBox">Meldung</div>
-				<div id="inhaltBox"></div>
+				<div id="inhaltBox">
 
 				<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
 					border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
@@ -53,6 +53,7 @@
 						</h:form>
 					</h:column>
 				</h:dataTable>
+				</div>
 			</div>	
 		</div>
 	</div>

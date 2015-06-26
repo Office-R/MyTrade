@@ -40,7 +40,6 @@ public class NeuerAuftragDao {
 			prepStmt = c1.prepareStatement(sqlQuery);
 			prepStmt.setInt(1, aktie_id);
 			ResultSet rs = prepStmt.executeQuery();
-			System.out.println(sqlQuery);
 			
 			while(rs.next()) {
 				aktie = new AktieModel();
@@ -52,6 +51,7 @@ public class NeuerAuftragDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pooling.putConnection(c1);
 		
 	}
 	
@@ -78,20 +78,16 @@ public class NeuerAuftragDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pooling.putConnection(c1);
 		return 1;
 	}
 	
-	public void neuerAuftrag()
+	public String neuerAuftrag()
 	{
 		executeInsert();
-//		 int anzahlAktien = anzahlDerAktienImBesitz(aktie.getName());
-//		 if(amount <= anzahlAktien){
-//			 for (int i = 0; i < amount; i++){
-//				 
-//			 }
-//		 }
+		return "offene_auftraege?faces-redirect=true";
 	}
-	public void executeInsert()
+	public void executeInsert()  
 	{
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
@@ -101,16 +97,16 @@ public class NeuerAuftragDao {
 		String sqlQuery;
 		try {
 
-			sqlQuery = "INSERT INTO auftrag (preis, fk_aktie) VALUES (?, ?)";
-			System.out.println(vkPreis + "" +  aktie.getAktie_id());
+			sqlQuery = "INSERT INTO auftrag (preis, fk_aktie) VALUES ( ? , ? );";
 			prepStmt = c1.prepareStatement(sqlQuery);
 			prepStmt.setDouble(1, vkPreis);
 			prepStmt.setInt(2, aktie.getAktie_id());
-			prepStmt.executeUpdate(sqlQuery);
+			int returnValue = prepStmt.executeUpdate(); //WICHTIG! Bei insert returnValue abfangen
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pooling.putConnection(c1);
 	}
 
 	public AktieModel getAktie() {
