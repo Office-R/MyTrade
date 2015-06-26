@@ -30,7 +30,7 @@ public class OffeneAuftraegeDao {
 		con = pooling.getConnection();
 		PreparedStatement prepStmt;
 		ResultSet resultSet;
-
+		auftragListe.clear();
 		String sqlQuery;
 		try {
 
