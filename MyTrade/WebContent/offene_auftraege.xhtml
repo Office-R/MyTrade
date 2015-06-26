@@ -19,6 +19,8 @@
  			</div>
  			<div id="meldungBox">Meldung</div>
  			<div id="inhaltBox">
+ 			
+ 			
  				<h:dataTable value="${offeneAuftraegeController.offeneAuftraege.auftragListe}" border="1"
 				var="stock" emptyMessage="Keine Aktien vorhanden">
 
@@ -37,10 +39,14 @@
 					<h:outputText value="${stock.preis}" />
 				</h:column>
 				
-				<h:column sortBy="${stock.isBesitzer}">
+				<h:column sortBy="${stock.aktion}">
 					<f:facet name="header">Aktion</f:facet>
-					<h:outputText value="${stock.aktion}" />
+				<h:form>	
+					<h:commandButton value="${stock.aktion}"
+						action="#{stock.buyOrStorno}"></h:commandButton>
+				</h:form>		
 				</h:column>
+				
 
 			</h:dataTable>
  			</div>

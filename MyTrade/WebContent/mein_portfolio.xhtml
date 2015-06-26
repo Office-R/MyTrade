@@ -25,53 +25,36 @@
 			<div id="hauptBox">
 				<div id="meldungBox">Meldung</div>
 				<div id="inhaltBox"></div>
-				<div id="navigationsBox" class="menuschrift">
-					<div id="meinPortfolioLinkBox">
-						<a href="mein_portfolio.xhtml">Mein Portfolio </a>
-					</div>
-					<div id="offeneAuftraegeLinkBox">
-						<a href="offene_auftraege.xhtml">Offene Aufträge </a>
-					</div>
-					<div id="administrationLinkBox">
-						<a href="admin.xhtml">Administration </a>
-					</div>
-					<div id="benuzerLinkBox">Benutzer</div>
-				</div>
-				<div id="meldungBox">Meldung</div>
-				<div id="inhaltBox">
 
-					<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
-						border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
+				<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
+					border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
 
 
-						<h:column>
-							<f:facet name="header">Symbol</f:facet>
-							<h:outputText value="${stock.symbol}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Symbol</f:facet>
+						<h:outputText value="${stock.symbol}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">Aktie</f:facet>
-							<h:outputText value="${stock.name}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Aktie</f:facet>
+						<h:outputText value="${stock.name}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">letze Dividende</f:facet>
-							<h:outputText value="${stock.dividende}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">letze Dividende</f:facet>
+						<h:outputText value="${stock.dividende}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">aktion</f:facet>
-							<h:form>
-								<h:commandButton value="Verkaufen"
-									action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
-							</h:form>
-						</h:column>
+					<h:column>
+						<f:facet name="header">aktion</f:facet>
+						<h:form>
+							<h:commandButton value="Verkaufen"
+								action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
+						</h:form>
+					</h:column>
 
-					</h:dataTable>
-				</div>
-
+				</h:dataTable>
 			</div>
-
 		</div>
 	</div>
 </body>

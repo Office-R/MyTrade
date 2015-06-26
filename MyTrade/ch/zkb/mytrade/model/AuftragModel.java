@@ -99,5 +99,16 @@ public class AuftragModel {
 		}
 		return "kaufen";
 	}
+	
+	public String buyOrStorno(){
+		if (this.isBesitzer){
+			//stornieren
+			System.out.println("storniert!");
+		}else{
+			System.out.println("gekauft");
+			//kaufen	
+		}
+	return "mein_portfolio?faces-redirect=true";
+	}
 		
 }
