@@ -6,10 +6,29 @@ public class AktieModel {
 	private double    nominalpreis;
 	private double    dividende;
 	private UserModel user;
+	private int		  user_id;
 	private String    symbol;
+	private int		  stueckZahl;
 	
 	public AktieModel() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getStueckZahl() {
+		return stueckZahl;
+	}
+
+	public void setStueckZahl(int stueckZahl) {
+		this.stueckZahl = stueckZahl;
+	}
+
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public int getAktie_id() {
