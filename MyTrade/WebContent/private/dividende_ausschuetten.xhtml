@@ -10,34 +10,40 @@
  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
-  		<div id="hauptBox">
- 			<div id="navigationsBox" class="menuschrift">
-	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
-	 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin.xhtml">Administration </a></div>
-	 			<div id="benuzerLinkBox">Benutzer</div>
- 			</div>
- 			<div id="meldungBox">Meldung</div>
- 			<div id="inhaltBox">
-				<h:dataTable id="dividende" value="${dividende.aktien}" border="1"
-				var="stock" emptyMessage="Keine Aktien vorhanden">
-
-				<h:column sortBy="${stock.symbol}">
-					<f:facet name="header">Symbol</f:facet>
-					<h:outputText value="${stock.symbol}" />
-				</h:column>
+ 		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+ 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
+ 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
+ 			<div id="administrationLinkBox"><a href="admin.xhtml">Administration </a></div>
+ 			<div id="benuzerLinkBox">Benutzer</div>
+			</div>
+			<div id="meldungBox">Meldung</div>
+			<div id="inhaltBox">
+					<h:form>
+				<h:dataTable id="dividende" value="#{dividendeController.dividendeDao.loadSymbole()}" border="1"
+				var="symbol" emptyMessage="Keine Aktien vorhanden">
 				
-				<h:column id="aktion" sortBy="${stock.aktion}">
-					<f:facet name="header">Aktion</f:facet>
-				<h:form>	
-					<h:commandButton value="${stock.aktion}" render=":aktion:offeneAuftraege" 
-						action="#{stock.buyOrStorno}"></h:commandButton>
-				</h:form>		
-				</h:column>
+					<h:column sortBy="${symbol.symbol}">
+						<f:facet name="header">Symbol</f:facet>
+						<h:outputText value="${symbol.symbol}" />
+					</h:column>
 				
-
-			</h:dataTable> 			
- 			</div>
-		</div>
+					<h:column>
+						<f:facet name="header">Dividende/Aktie</f:facet>
+						
+						<h:inputText value="#{dividendeController.dividendeDao.dividendeInChFPerStk}" />
+					</h:column>
+					
+					 <h:column id="aktion" >
+						<f:facet name="header">Aktion</f:facet>
+						
+							<h:commandButton action="#{dividendeController.dividendeDao.ausschuetten(symbol.symbol)}" ></h:commandButton>
+						
+					</h:column>				
+					
+				</h:dataTable> 	
+					</h:form>
+			</div>
+	</div>
 </body>
 </html>
