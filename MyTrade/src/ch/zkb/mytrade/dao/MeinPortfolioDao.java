@@ -23,6 +23,7 @@ public class MeinPortfolioDao {
 	
 	public synchronized void getStocks()
 	{
+		aktien.clear();
 		ConnectionPooling pooling;
 		pooling        = ConnectionPoolingImplementation.getInstance(1, 5);
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
