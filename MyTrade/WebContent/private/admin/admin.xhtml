@@ -6,10 +6,12 @@
   xmlns:f="http://java.sun.com/jsf/core" >
 <head>
 <meta charset="ISO-8859-1" />
-<title>Layout</title>
- <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
-</head>
-<body>
+  <title>Admin</title>
+   <link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
+ </head>
+ <body>
+ 
+  	<h:form>
   		<div id="hauptBox">
  			<div id="navigationsBox" class="menuschrift">
 	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
@@ -19,25 +21,13 @@
  			</div>
  			<div id="meldungBox">Meldung</div>
  			<div id="inhaltBox">
-				<h:dataTable id="dividende" value="${dividende.aktien}" border="1"
-				var="stock" emptyMessage="Keine Aktien vorhanden">
-
-				<h:column sortBy="${stock.symbol}">
-					<f:facet name="header">Symbol</f:facet>
-					<h:outputText value="${stock.symbol}" />
-				</h:column>
-				
-				<h:column id="aktion" sortBy="${stock.aktion}">
-					<f:facet name="header">Aktion</f:facet>
-				<h:form>	
-					<h:commandButton value="${stock.aktion}" render=":aktion:offeneAuftraege" 
-						action="#{stock.buyOrStorno}"></h:commandButton>
-				</h:form>		
-				</h:column>
-				
-
-			</h:dataTable> 			
+ 			<h1> Administration </h1>
+			  	<a href="neue_aktie.xhtml">Aktie erfassen</a> <br />
+			  	<a href="neuer_benutzer.xhtml">Benutzer erfassen</a> <br />
+			  	<a href="admin.xhtml">Dividende aussütten</a>
  			</div>
 		</div>
-</body>
+ 	</h:form>
+
+ </body>
 </html>
