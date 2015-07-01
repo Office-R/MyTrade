@@ -96,6 +96,6 @@ public class NeueAktieDao {
 		System.out.println("Aktien erstellt!");
 		
 		pooling.putConnection(c1);
-		return "meinPortfolio?faces-redirect=true";
+		return "../meinPortfolio?faces-redirect=true";
 	}
 }
