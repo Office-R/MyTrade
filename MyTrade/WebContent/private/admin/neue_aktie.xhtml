@@ -6,43 +6,55 @@
   xmlns:f="http://java.sun.com/jsf/core" >
 <head>
 <meta charset="ISO-8859-1" />
-<title>neuer_Auftrag</title>
- <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<title>Layout</title>
+ <link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
 </head>
 <body>
+ <f:view>My Trade<br/></f:view>
   	<h:form>
   		<div id="hauptBox">
  			<div id="navigationsBox" class="menuschrift">
 	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
 	 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin/admin.xhtml">Administration </a></div>
+	 			<div id="administrationLinkBox"><a href="admin.xhtml">Administration </a></div>
 	 			<div id="benuzerLinkBox">Benutzer</div>
  			</div>
  			<div id="meldungBox">Meldung</div>
  			<div id="inhaltBox">
- 				<h1> Auftrag erfassen </h1>
+ 			<h1> Aktie erfassen </h1>
 			<table> 
 				<tr>
-					<td>Aktie:</td>
-					<td> <h:outputLabel value="#{neuerAuftragController.neuerAuftragDao.aktie.name}"></h:outputLabel>  </td>
+					<td>Name:</td>
+					<td> <h:inputText value="#{GoPro}"></h:inputText>  </td>
 				</tr>
 				<tr>
-					<td>Preis(CHF):</td>
-					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.vkPreis}"></h:inputText>  </td>
+					<td>Kürzel:</td>
+					<td> <h:inputText value="#{gP}"></h:inputText>  </td>
 				</tr>
 				<tr>
-					<td>Stückzahl(l-n):</td>
-					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.amount}"></h:inputText>  </td>
+					<td>Nomialpreis(CHF):</td>
+					<td> <h:inputText value="#{40.50}"></h:inputText>  </td>
+				</tr>
+				<tr>
+					<td>Dividende:</td>
+					<td> <h:inputText value="#{blabla}"></h:inputText>  </td>
+				</tr>
+				<tr>
+					<td>Stückzahl:</td>
+					<td> <h:inputText value="#{5}"></h:inputText>  </td>
 				</tr>
 				<tr>
 					<td> <h:commandButton value="Zurück" /> </td>
-					<td> <h:commandButton value="verkaufen" action="#{neuerAuftragController.neuerAuftragDao.neuerAuftrag()}" />  </td>
+					<td> <h:commandButton value="OK" />  </td>
 				</tr>				
 			</table> 
+ 			
+ 			
+ 			
+ 			
  			</div>
 		</div>
  	</h:form>
-
 
 </body>
 </html>

@@ -16,11 +16,13 @@ public class MeinPortfolioController {
 	public MeinPortfolioController() {
 		System.out.println("meinPortFolioController");
 		portfolioDao = new MeinPortfolioDao();
-		portfolioDao.getStocks();
+//		portfolioDao.getStocks();
+
 	}
 	
 	
 	public MeinPortfolioDao getPortfolioDao() {
+		portfolioDao.getStocks();
 		return portfolioDao;
 	}
 

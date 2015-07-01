@@ -11,7 +11,7 @@ import ch.zkb.mytrade.model.Rolle;
 
 public class NeuerBenutzerDao {
 
-	public synchronized String neuerBenutzer(String name, String vorname, String login, String passwort, Rolle rolle)
+	public synchronized void neuerBenutzer(String name, String vorname, String login, String passwort, Rolle rolle)
 	{
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
@@ -21,8 +21,8 @@ public class NeuerBenutzerDao {
 		Connection c1 = pooling.getConnection();
 
 		try {
-			String sqlQuery = "INSERT INTO user (user.name, user.vorname, user.login, user.password, user.rolle) "
-					+ "VALUES (?, ?, ?, ?, ?)" ;
+			String sqlQuery = "INSERT INTO user (user.name, user.vorname, user.login, user.password, user.fk_rolle, user.kontostand) "
+					+ "VALUES (?, ?, ?, md5(?), ?, ?)" ;
 
 			prepStmt = c1.prepareStatement(sqlQuery);
 			
@@ -38,6 +38,7 @@ public class NeuerBenutzerDao {
 			}
 			
 			prepStmt.setInt(5, rolleI);
+			prepStmt.setInt(6, 10000);
 			if(prepStmt.execute()){
 				System.out.println("hat geklappt");
 			}
@@ -49,6 +50,5 @@ public class NeuerBenutzerDao {
 		}
 		pooling.putConnection(c1);
 		System.out.println("ging durch DB");
-		return "meinPortfolio?faces-redirect=true";
 	}
 }

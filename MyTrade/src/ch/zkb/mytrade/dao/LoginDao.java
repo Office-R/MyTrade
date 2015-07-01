@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import ch.zkb.mytrade.model.NeuerBenutzerModel;
 import ch.zkb.mytrade.model.UserModel;
 
 public class LoginDao {
@@ -26,7 +27,7 @@ public class LoginDao {
 		Connection c1 = pooling.getConnection();
 
 		try {
-			String sqlQuery = "SELECT user.user_id, user.name, user.vorname, user.login, "
+			String sqlQuery = "SELECT  user.user_id, user.name, user.vorname, user.login, "
 					                     + "user.kontostand, rolle.rolle "
 					                     + "FROM user "
 					                     + "JOIN rolle "
@@ -42,11 +43,11 @@ public class LoginDao {
 			if(rs.next()) {
 				System.out.println(rs);
 				UserModel user = new UserModel();
-				user.setLogin   (rs.getString("user.login"));
-				user.setName    (rs.getString("user.name"));
-				user.setRolle   (rs.getString("rolle.rolle"));
-				user.setUser_id (rs.getInt   ("user.user_id"));
-				user.setVorname (rs.getString("user.vorname"));
+				user.setLogin      (rs.getString("user.login"));
+				user.setName       (rs.getString("user.name"));
+				user.setRolleString(rs.getString("rolle.rolle"));
+				user.setUser_id    (rs.getInt   ("user.user_id"));
+				user.setVorname    (rs.getString("user.vorname"));
 				
 				ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 				Map<String, Object> sessionMap =  externalContext.getSessionMap();
