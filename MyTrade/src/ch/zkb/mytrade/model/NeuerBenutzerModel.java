@@ -1,6 +1,6 @@
 package ch.zkb.mytrade.model;
 
-public class NeuerBenutzerModel {
+public class NeuerBenutzerModel  {
 	
 	private String name;
 	private String vorname;

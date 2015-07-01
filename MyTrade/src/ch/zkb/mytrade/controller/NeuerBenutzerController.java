@@ -103,10 +103,11 @@ public class NeuerBenutzerController {
 	}
 	
 	
-	public void benutzerspeichern() {
+	public String benutzerspeichern() {
 		
 		neuerBenutzerDao = new NeuerBenutzerDao();
 		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(), neuerBenutzer.getVorname(), neuerBenutzer.getLogin(), neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
+		return "mein_portfolio?faces-redirect=true";
 	}
 	
 }
