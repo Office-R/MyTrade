@@ -16,16 +16,13 @@ public class MeinPortfolioController {
 	public MeinPortfolioController() {
 		System.out.println("meinPortFolioController");
 		portfolioDao = new MeinPortfolioDao();
-//		portfolioDao.getStocks();
-
+		portfolioDao.getStocks();
 	}
-	
 	
 	public MeinPortfolioDao getPortfolioDao() {
 		portfolioDao.getStocks();
 		return portfolioDao;
 	}
-
 
 	public void setPortfolioDao(MeinPortfolioDao portfolioDao) {
 		this.portfolioDao = portfolioDao;
@@ -35,7 +32,6 @@ public class MeinPortfolioController {
 	{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("neuerAuftragAktienId", id);
 		return "neuer_auftrag?faces-redirect=true";
-		
 	}
 
 	

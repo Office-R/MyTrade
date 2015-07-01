@@ -68,6 +68,7 @@ public class DividendeDao {
 			prepStmt.setString(1, symbol);
 			ResultSet rs = prepStmt.executeQuery();
 			System.out.println(getDividendeInChFPerStk());
+			
 			while(rs.next()) {
 				String sqlUpdate = " UPDATE user"
 					           	+  " SET user.kontostand = user.kontostand + ?"
@@ -79,6 +80,8 @@ public class DividendeDao {
 																  // ohne gabs eine sql-Exception
 				System.out.println("Dividende für user Id: "  + rs.getInt("aktie.fk_user"));
 			}
+			 
+			setDividendeInChFPerStk(null);
 			prepStmt.close();
 			
 		} catch (SQLException e) {

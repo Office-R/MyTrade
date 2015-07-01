@@ -147,7 +147,7 @@ public class OffeneAuftraegeDao {
 		
 	}
 
-	public void kauf(AuftragModel auftragModel) {
+	public  synchronized void kauf(AuftragModel auftragModel) {
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
                 .getSessionMap().get("currentUser");
 		
