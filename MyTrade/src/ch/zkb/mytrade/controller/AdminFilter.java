@@ -73,6 +73,11 @@ public class AdminFilter implements Filter {
 		}
 	}
 
+	boolean istLoginURL(HttpServletRequest request) {
+		String reqString = request.getRequestURI();
+		debugOut("istLoginURL(): reqString: [" + reqString + "]");
+		return reqString.contains(loginUrl);
+	}
 
 	/**
 	 * Wie "doFilter", doch a) mit throws, statt try-catch und
@@ -80,8 +85,18 @@ public class AdminFilter implements Filter {
 	 */
 	private void eigenerDoHTTPFilter(HttpServletRequest request, HttpServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
+		if(null == holeSessionVariable(request)) {
+			response.sendRedirect(loginUrl);
+			return;
+		}
+
+		if(istLoginURL(request)) {
+			debugOut("eigenerDoHTTPFilter(): Request is login request!");
+			chain.doFilter(request, response); // hier drauf darf eingentlich jeder
+			return;
+		}
 		UserModel user = (UserModel) holeSessionVariable(request).getAttribute("currentUser");
+		
 		
 		if(null == user){
 			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
@@ -101,7 +116,18 @@ public class AdminFilter implements Filter {
 		}
 
 	}
-
+//	private void behandleLeereSession(HttpServletRequest  request,
+//	            HttpServletResponse response,
+//	            FilterChain         chain)
+//	throws IOException, ServletException 
+//	{
+//	debugOut("behandleLeereSession(): Session ist null");
+//	if(istOeffentlicheSeite(request) || istLoginURL(request)) {
+//	chain.doFilter(request, response);	
+//	} else {
+//	response.sendRedirect(loginUrl);
+//	}
+//	}
 
 	@Override
 	public void destroy() {
