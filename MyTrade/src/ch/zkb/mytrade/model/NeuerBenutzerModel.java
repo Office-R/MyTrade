@@ -6,6 +6,7 @@ public class NeuerBenutzerModel {
 	private String vorname;
 	private String login;
 	private String passwort;
+	private int user_id;
 	Rolle rolle;
 	
 	public NeuerBenutzerModel(){
@@ -14,6 +15,8 @@ public class NeuerBenutzerModel {
 		login = "";
 		passwort = "";
 		rolle = Rolle.TRADER;
+//		Administrator
+		
 	}	
 	
 	public String getName() {
@@ -26,6 +29,7 @@ public class NeuerBenutzerModel {
 	public void setRolle(Rolle rolle) {
 		this.rolle = rolle;
 	}
+	
 
 	public void setName(String name) {
 		this.name = name;

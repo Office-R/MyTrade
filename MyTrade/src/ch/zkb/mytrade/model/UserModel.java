@@ -6,8 +6,8 @@ public class UserModel {
 	private String name;
 	private String vorname;
 	private String login;
-	private String rolle;
 	private String passsword;
+	Rolle rolle;
 	public UserModel() {
 	}
 	public int getUser_id() {
@@ -34,18 +34,27 @@ public class UserModel {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	public String getRolle() {
-		return rolle;
-	}
-	public void setRolle(String rolle) {
-		this.rolle = rolle;
-	}
 	public String getPasssword() {
 		return passsword;
 	}
 	public void setPasssword(String passsword) {
 		this.passsword = passsword;
 	}
-	
+	public Rolle getRolle() {
+		return rolle;
+	}
+	public void setRolle(Rolle rolle) {
+		this.rolle = rolle;
+	}
+	public void setRolleString(String rolle){
+		if(rolle.toLowerCase().equals("administrator"))
+		{
+			this.rolle = Rolle.ADMINISTRATOR;
+		}
+		else
+		{
+			this.rolle = Rolle.TRADER;
+		}
+	}
 	
 }
