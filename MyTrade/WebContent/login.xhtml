@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html
-  xmlns  ="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-  <meta charset="ISO-8859-1" />
-  <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
- </head>
- <body>
+<meta charset="ISO-8859-1" />
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+<body>
 
- 
-  	<div id="hauptBox">
-  		<div id="navigationsBox">
-  			<div id="meinPortfolioLinkBox">Mein Portfolio</div>
-	 		<div id="offeneAuftraegeLinkBox">Offene Aufträge</div>
-	 		<div id="administrationLinkBox">Administration</div>
-	 		<div id="benuzerLinkBox">Benutzer</div>
-	 	</div>
-  		<div id="meldungBox">Meldung</div>
-  		<div id="inhaltBox">
-	  		<h1> Login </h1>
-	  		<h:form>
-			<table> 
-				<tr>
-					<td>Benutzername:</td>
-					<td> <h:inputText value="#{loginController.username}"></h:inputText>  </td>
-				</tr>
-				<tr>
-					<td>Passwort:</td>
-					<td> <h:inputText value="#{loginController.password}"></h:inputText>  </td>
-				</tr>
-				<tr>
-					<td></td>
-					<td> <h:commandButton value="Login" action="#{loginController.authentication}"></h:commandButton>  </td>
-				</tr>				
-			</table>  
+
+	<div id="hauptBox">
+		<div id="navigationsBox">
+			<div id="meinPortfolioLinkBox">Mein Portfolio</div>
+			<div id="offeneAuftraegeLinkBox">Offene Aufträge</div>
+			<div id="administrationLinkBox">Administration</div>
+			<div id="benuzerLinkBox">Benutzer</div>
+		</div>
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
+		<div id="inhaltBox">
+			<h1>Login</h1>
+			<h:form>
+				<table>
+					<tr>
+						<td>Benutzername:</td>
+						<td><h:inputText value="#{loginController.username}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Passwort:</td>
+						<td><h:inputText value="#{loginController.password}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><h:commandButton value="Login"
+								action="#{loginController.authentication}"></h:commandButton></td>
+					</tr>
+				</table>
 			</h:form>
 		</div>
-   	
-   	 </div>
-  
- 
- </body>
+
+	</div>
+
+
+</body>
 </html>

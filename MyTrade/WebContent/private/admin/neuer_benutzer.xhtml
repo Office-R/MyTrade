@@ -21,8 +21,10 @@
 	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
 	 			</div>
  			</div>
- 			<div id="meldungBox">Meldung</div>
- 			<div id="inhaltBox">
+			<div id="meldungBox">
+				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+			</div>
+			<div id="inhaltBox">
  				<h1> Benutzer erfassen </h1>
 					<table> 
 						<tr>

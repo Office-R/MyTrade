@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.bag.SynchronizedBag;
 
+import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.AktieModel;
 import ch.zkb.mytrade.model.SymbolModel;
 import ch.zkb.mytrade.model.UserModel;
@@ -94,6 +95,7 @@ public class DividendeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.DIVIDENDE);
 		pooling.putConnection(c1);
 	}
 
