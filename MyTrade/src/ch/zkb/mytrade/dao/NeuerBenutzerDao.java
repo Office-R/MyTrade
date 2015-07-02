@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+
+import javax.faces.context.FacesContext;
+
+import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.Rolle;
 
 
@@ -48,7 +52,7 @@ public class NeuerBenutzerDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.BENUTZER_ADDED);
 		pooling.putConnection(c1);
-		System.out.println("ging durch DB");
 	}
 }

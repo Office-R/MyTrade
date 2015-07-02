@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.AuftragModel;
 import ch.zkb.mytrade.model.UserModel;
 
@@ -103,6 +104,7 @@ public class OffeneAuftraegeDao {
 
 			prepStmt.close();
 			pooling.putConnection(con);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.STORNO);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,6 +189,7 @@ public class OffeneAuftraegeDao {
 				
 				storno(auftragModel);
 				
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.AKTIE_BUY);
 
 			} catch (Exception e) {
 				e.printStackTrace();

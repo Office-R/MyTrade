@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.faces.context.FacesContext;
 
+import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.AktieModel;
 import ch.zkb.mytrade.model.UserModel;
 
@@ -93,7 +94,11 @@ public class NeueAktieDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Aktien erstellt!");
+		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.AKTIE_ADDED);
+		if(1 < inputAktie.getStueckZahl()){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.AKTIEN_ADDED);
+		}
 		
 		pooling.putConnection(c1);
 		return "../meinPortfolio?faces-redirect=true";

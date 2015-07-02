@@ -22,7 +22,6 @@ public class MeldungController {
 	public static String FALSE_URL      = "Der Uniform Resource Locator existiert nicht";
 	public static String LOGIN_FAIL     = "Die Authentifizierung war leider nicht erfolgreich";
 	
-	
 	public static String EMPTY_MESSAGE  = "";
 	
 	
