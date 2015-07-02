@@ -21,8 +21,13 @@
 				<a href="admin/admin.xhtml">Administration </a>
 			</div>
 			<div id="benuzerLinkBox">Benutzer</div>
+			<div id="abmeldenLinkBox">
+				<h:form>
+	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
+	 			</h:form>
+	 		</div>
+		</div>
 			
-			<div id="hauptBox">
 				<div id="meldungBox">Meldung</div>
 				<div id="inhaltBox">
 
@@ -54,8 +59,6 @@
 					</h:column>
 				</h:dataTable>
 				</div>
-			</div>	
-		</div>
 	</div>
 </body>
 </html>
