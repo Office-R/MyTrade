@@ -1,11 +1,15 @@
 package ch.zkb.mytrade.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+
+import ch.zkb.mytrade.model.Rolle;
+import ch.zkb.mytrade.model.UserModel;
 
 @WebFilter("/faces/private/*")
 public class MyFilter implements Filter {
@@ -39,6 +43,7 @@ public class MyFilter implements Filter {
 		return session;
 	}
 
+	String meinPortfolioUrl = "http://localhost:8080/MyTrade/faces/private/mein_portfolio.xhtml";
 	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
 
 	boolean istLoginURL(HttpServletRequest request) {
@@ -73,6 +78,7 @@ public class MyFilter implements Filter {
 	private void eigenerDoHTTPFilter(HttpServletRequest request, HttpServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		if(null == holeSessionVariable(request)) {
+			
 			behandleLeereSession(request, response, chain);
 			return;
 		}
@@ -83,7 +89,7 @@ public class MyFilter implements Filter {
 			return;
 		}
 
-		Object user = holeSessionVariable(request).getAttribute("currentUser");
+		UserModel  user = (UserModel) holeSessionVariable(request).getAttribute("currentUser");
 		if(null == user && istOeffentlicheSeite(request)) {
 			debugOut("eigenerDoHTTPFilter(): Request ist freie Seite");
 			chain.doFilter(request, response); // jeder, da öffentlich	
@@ -92,13 +98,27 @@ public class MyFilter implements Filter {
 
 		if(null == user) { // hier aber keine freie Seite
 			debugOut("eigenerDoHTTPFilter(): user ist null, aber nicht freie Seite!");	
+//			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.ACCESS_DENIED);
 			response.sendRedirect(loginUrl);
+			return;
+		}
+		if(user.getRolle() == Rolle.ADMINISTRATOR) {
+			debugOut("eigenerDoHTTPFilter(): Administrator ist angemeldet");
+			chain.doFilter(request, response); // jeder, da öffentlich	
+			return;
+		}
+		System.out.println(user.getRolle());
+		if(user.getRolle() == Rolle.TRADER) {
+			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
+		    holeSessionVariable(request).setAttribute("Message", MeldungController.ACCESS_DENIED);
+			response.sendRedirect(meinPortfolioUrl);
 			return;
 		}
 
 		debugOut("  Session: " + holeSessionVariable(request));
 		debugOut("  User:    " + user                        );
 		chain.doFilter(request, response); // darf weiterleiten, da eingeloggt
+	
 	}
 
 

@@ -2,6 +2,7 @@ package ch.zkb.mytrade.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.LoginDao;
 
@@ -31,7 +32,11 @@ public class LoginController {
 	public String authentication()
 	{
 		LoginDao loginDao = new LoginDao();
-		return loginDao.authenticate(username, password);
+		if(null != loginDao.authenticate(username, password)){
+			return loginDao.authenticate(username, password);
+		}
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.LOGIN_FAIL);
+		return "login?faces-redirect=true";
 	}
 	
 }
