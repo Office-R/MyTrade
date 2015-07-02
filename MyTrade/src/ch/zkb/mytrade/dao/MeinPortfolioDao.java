@@ -32,13 +32,15 @@ public class MeinPortfolioDao {
 		PreparedStatement prepStmt;
 
 		try {
-			String sqlQuery = "SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login "
-                    + "FROM aktie "
-                    + "JOIN symbol "
-                    + "ON aktie.fk_symbol=symbol.symbol_id "
-                    + "JOIN user "
-                    + "ON aktie.fk_user=user.user_id "
-                    + "WHERE user.login = ? ";
+			String sqlQuery = "SELECT symbol.symbol, aktie.name, aktie.nominalpreis, aktie.aktie_id, aktie.dividende, user.login"
+                             +" FROM aktie"
+                             +" JOIN symbol"
+                             +" ON aktie.fk_symbol=symbol.symbol_id"
+                             +" JOIN user"
+                             +" ON aktie.fk_user=user.user_id"
+                             +" WHERE user.login = ? "
+                             +" AND aktie.aktie_id NOT IN (SELECT auftrag.fk_aktie FROM auftrag)";
+
 			prepStmt = (PreparedStatement) c1.prepareStatement(sqlQuery);
 			prepStmt.setString(1, currentUser.getLogin());
 			ResultSet rs = prepStmt.executeQuery();

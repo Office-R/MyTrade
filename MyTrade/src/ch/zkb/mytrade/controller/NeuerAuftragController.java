@@ -16,9 +16,11 @@ public class NeuerAuftragController {
 		neuerAuftragDao.loadAktienProperties((Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("neuerAuftragAktienId"));
 	}
 	public NeuerAuftragDao getNeuerAuftragDao() {
+		neuerAuftragDao.loadAktienProperties((Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("neuerAuftragAktienId"));
 		return neuerAuftragDao;
 	}
 	public void setNeuerAuftragDao(NeuerAuftragDao neuerAuftragDao) {
+//		neuerAuftragDao.loadAktienProperties((Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("neuerAuftragAktienId"));
 		this.neuerAuftragDao = neuerAuftragDao;
 	}
 	public void neuerAuftrag(){
