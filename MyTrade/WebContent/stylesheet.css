@@ -58,6 +58,13 @@
   	 						width: 200px;
   	 			 			height: 30px;
   	 			 	   		}
+  	 #abmeldenLinkBox 		{background-color: rgb(143, 176, 179);
+  	 						position: absolute;
+  	 				   		top: 5px;
+  	 						left: 860px;
+  	 						width: 100px;
+  	 			 			height: 30px;
+  	 			 	   		}			 	   		
   	 .menuschrift a:link {
 							font-family:arial;
 							font-size:medium;

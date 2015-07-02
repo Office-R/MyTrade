@@ -60,7 +60,7 @@ public class DividendeDao {
 		PreparedStatement prepStmtUpdate;
 
 		try {
-			String sqlQuery = " SELECT aktie.fk_user from aktie"
+			String sqlQuery = " SELECT aktie.fk_user, aktie.aktie_id from aktie"
 							+ " JOIN symbol"
 							+ " ON aktie.fk_symbol  = symbol.symbol_id"
 							+ " Where symbol.symbol = ?";
@@ -78,7 +78,14 @@ public class DividendeDao {
 				prepStmtUpdate.setInt(2, rs.getInt("aktie.fk_user"));
 				int returnValue = prepStmtUpdate.executeUpdate(); // return value abgefangen 
 																  // ohne gabs eine sql-Exception
-				System.out.println("Dividende für user Id: "  + rs.getInt("aktie.fk_user"));
+				sqlUpdate = " UPDATE aktie"
+					           	+  " SET aktie.dividende  =  ?"
+					           	+  " WHERE aktie.aktie_id = ?";
+				prepStmtUpdate = (PreparedStatement) c1.prepareStatement(sqlUpdate);
+				prepStmtUpdate.setDouble(1, getDividendeInChFPerStk());
+				prepStmtUpdate.setInt(2, rs.getInt("aktie.aktie_id"));
+				returnValue = prepStmtUpdate.executeUpdate(); 
+				
 			}
 			 
 			setDividendeInChFPerStk(null);

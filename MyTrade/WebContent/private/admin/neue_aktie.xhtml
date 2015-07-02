@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Layout</title>
-<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
 </head>
 <body>
 	<f:view>My Trade<br />
@@ -15,15 +15,20 @@
 	<div id="hauptBox">
 		<div id="navigationsBox" class="menuschrift">
 			<div id="meinPortfolioLinkBox">
-				<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+				<a href="../mein_portfolio.xhtml">Mein Portfolio </a>
 			</div>
 			<div id="offeneAuftraegeLinkBox">
-				<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+				<a href="../offene_auftraege.xhtml">Offene Aufträge </a>
 			</div>
 			<div id="administrationLinkBox">
 				<a href="admin.xhtml">Administration </a>
 			</div>
 			<div id="benuzerLinkBox">Benutzer</div>
+			<div id="abmeldenLinkBox">
+			<h:form>
+	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
+	 		</h:form>
+	 			</div>
 		</div>
 		<div id="meldungBox">Meldung</div>
 		<div id="inhaltBox">

@@ -127,7 +127,6 @@ public class OffeneAuftraegeDao {
 			sqlQuery = "SELECT user.kontostand FROM user WHERE user.user_id = ?";
 			prepStmt = con.prepareStatement(sqlQuery);
 			prepStmt.setInt(1, userId);
-
 			
 			resultSet = prepStmt.executeQuery();
 
@@ -147,7 +146,7 @@ public class OffeneAuftraegeDao {
 		
 	}
 
-	public  synchronized void kauf(AuftragModel auftragModel) {
+	public synchronized void kauf(AuftragModel auftragModel) {
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
                 .getSessionMap().get("currentUser");
 		
@@ -169,16 +168,16 @@ public class OffeneAuftraegeDao {
 
 				prepStmt.executeUpdate();
 				
-				sqlQuery = "UPDATE user SET user.kontostand = ? WHERE user.user_id = ?";
+				sqlQuery = "UPDATE user SET user.kontostand = user.kontostand - ? WHERE user.user_id = ?";
 				prepStmt = con.prepareStatement(sqlQuery);
-				prepStmt.setDouble(1, getKontostand(currentUser.getUser_id()) - auftragModel.getPreis());
+				prepStmt.setDouble(1, auftragModel.getPreis());
 				prepStmt.setInt(2, currentUser.getUser_id());
 
 				prepStmt.executeUpdate();
 				
-				sqlQuery = "UPDATE user SET user.kontostand = ? WHERE user.user_id = ?";
+				sqlQuery = "UPDATE user SET user.kontostand = user.kontostand + ? WHERE user.user_id = ?";
 				prepStmt = con.prepareStatement(sqlQuery);
-				prepStmt.setDouble(1, getKontostand(auftragModel.getBesitzer_id()) + auftragModel.getPreis());
+				prepStmt.setDouble(1, auftragModel.getPreis());
 				prepStmt.setInt(2, auftragModel.getBesitzer_id());
 
 				prepStmt.executeUpdate();
