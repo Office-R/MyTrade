@@ -89,6 +89,7 @@ public class DividendeDao {
 			}
 			 
 			setDividendeInChFPerStk(null);
+			dividendeInChFPerStk = null;
 			prepStmt.close();
 			
 		} catch (SQLException e) {

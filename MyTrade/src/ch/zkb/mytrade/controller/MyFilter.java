@@ -39,7 +39,6 @@ public class MyFilter implements Filter {
 		return session;
 	}
 
-
 	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
 
 	boolean istLoginURL(HttpServletRequest request) {

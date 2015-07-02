@@ -20,7 +20,9 @@ public class MeinPortfolioController {
 	}
 	
 	public MeinPortfolioDao getPortfolioDao() {
-		portfolioDao.getStocks();
+		if(null != portfolioDao){
+			portfolioDao.getStocks();
+		}
 		return portfolioDao;
 	}
 
