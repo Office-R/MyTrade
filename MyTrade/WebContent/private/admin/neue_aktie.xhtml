@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Layout</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
+</head>
+<body>
+	<f:view>My Trade<br />
+	</f:view>
+
+	<div id="hauptBox">
+		<div id="navigationsBox" class="menuschrift">
+			<div id="meinPortfolioLinkBox">
+				<a href="../mein_portfolio.xhtml">Mein Portfolio </a>
+			</div>
+			<div id="offeneAuftraegeLinkBox">
+				<a href="../offene_auftraege.xhtml">Offene Aufträge </a>
+			</div>
+			<div id="administrationLinkBox">
+				<a href="admin.xhtml">Administration </a>
+			</div>
+			<div id="benuzerLinkBox">Benutzer</div>
+			<div id="abmeldenLinkBox">
+			<h:form>
+	 			<h:commandButton value="Logout" action="#{logoutController.logout}" ></h:commandButton>
+	 		</h:form>
+	 		</div>
+			</div>
+		</div>
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
+		<div id="inhaltBox">
+			<h1>Aktie erfassen</h1>
+			<h:form>
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td><h:inputText
+								value="#{neueAktieController.neueAktie.name}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td>Symbol:</td>
+						<td><h:inputText
+								value="#{neueAktieController.neueAktie.symbol}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td>Nominalpreis(CHF):</td>
+						<td><h:inputText
+								value="#{neueAktieController.neueAktie.nominalpreis}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Dividende:</td>
+						<td><h:inputText
+								value="#{neueAktieController.neueAktie.dividende}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Stückzahl:</td>
+						<td><h:inputText
+								value="#{neueAktieController.neueAktie.stueckZahl}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+
+						<td><h:commandButton value="Zurück"
+								action="#{neueAktieController.zurueck()}" /></td>
+						<td><h:commandButton value="OK"
+								action="#{neueAktieController.aktieSpeichern()}" /></td>
+
+
+					</tr>
+				</table>
+			</h:form>
+		</div>
+
+	</div>
+
+</body>
+</html>

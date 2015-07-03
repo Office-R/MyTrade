@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>meinPortfolio</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+<body>
+
+	<div id="hauptBox">
+		<div id="navigationsBox" class="menuschrift">
+			<div id="meinPortfolioLinkBox">
+				<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+			</div>
+			<div id="offeneAuftraegeLinkBox">
+				<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+			</div>
+			<div id="administrationLinkBox">
+				<a href="admin/admin.xhtml">Administration </a>
+			</div>
+			<div id="benuzerLinkBox">Benutzer</div>
+			<div id="abmeldenLinkBox">
+<<<<<<< HEAD
+				<h:form action="/MyTrade/faces/logout.xhtml">
+	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
+	 			</h:form>
+	 		</div>
+=======
+				<h:form>
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</h:form>
+			</div>
+>>>>>>> branch 'master' of https://github.com/Office-R/MyTrade.git
+		</div>
+
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
+		<div id="inhaltBox">
+
+			<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
+				border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
+
+
+				<h:column>
+					<f:facet name="header">Symbol</f:facet>
+					<h:outputText value="${stock.symbol}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Aktie</f:facet>
+					<h:outputText value="${stock.name}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">letze Dividende</f:facet>
+					<h:outputText value="${stock.dividende}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">aktion</f:facet>
+					<h:form>
+						<h:commandButton value="Verkaufen"
+							action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
+					</h:form>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</div>
+</body>
+</html>
