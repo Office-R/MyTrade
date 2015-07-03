@@ -11,6 +11,7 @@ public class NeuerAuftragController {
 	
 	private NeuerAuftragDao neuerAuftragDao;
 	private int aktienId;
+	private String anzahlAktien;
 	public NeuerAuftragController() {
 		neuerAuftragDao = new NeuerAuftragDao();
 		neuerAuftragDao.loadAktienProperties((Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("neuerAuftragAktienId"));

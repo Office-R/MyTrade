@@ -45,7 +45,6 @@ public class AdminFilter implements Filter {
 				debugOut("holeSessionVariable(): No session!");
 			} else {
 				session = (HttpSession) facesContext.getExternalContext().getSession(true);            		
-				
 			}
 		}
 		return session;
@@ -112,6 +111,7 @@ public class AdminFilter implements Filter {
 		}
 		if(user.getRolle() == Rolle.TRADER) {
 			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
+		    holeSessionVariable(request).setAttribute("Message", MeldungController.ACCESS_DENIED);
 			response.sendRedirect(meinPortfolioUrl);
 			return;
 		}

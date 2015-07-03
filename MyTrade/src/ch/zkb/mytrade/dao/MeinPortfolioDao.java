@@ -28,7 +28,6 @@ public class MeinPortfolioDao {
 		pooling        = ConnectionPoolingImplementation.getInstance(1, 5);
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
 				                                 .getSessionMap().get("currentUser");
-		if(null == currentUser) return;
 		Connection c1  = pooling.getConnection();
 		PreparedStatement prepStmt;
 
