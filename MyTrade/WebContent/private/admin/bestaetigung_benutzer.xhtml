@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Layout</title>
-<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
 </head>
 <body>
 	<f:view>My Trade<br />
@@ -33,10 +33,10 @@
 				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
 			</div>
 			<div id="inhaltBox">
-			<table> 
+				<table> 
 						<tr>
 							<td>Name:</td>
-							<td> <h:outputText value="#{neuerBenutzerController.name}"></h:outputText> </td>
+							<td> <h:outputText value="#{neuerBenutzerController.neuerBenutzer.name}"></h:outputText> </td>
 						</tr>
 						<tr>
 							<td>Vorname:</td>
@@ -53,14 +53,15 @@
 						<tr>
 							<td>Rolle:</td>
 							<td> <h:outputText value="#{neuerBenutzerController.rolle}" >
-                </h:outputText>  </td>
+              				  </h:outputText>  </td>
 						</tr>
+						<tr>
+							<td> <h:commandButton value="weiter" action="#{neuerBenutzerController.weiter()}" /></td>
+						</tr>	
+				</table> 
 			</div>
 		</div>
 	</h:form>
-
-
-	<!--   <h:outputLabel value="#{55+11*3}"></h:outputLabel>  -->
 
 </body>
 </html>

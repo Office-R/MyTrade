@@ -14,7 +14,7 @@ import ch.zkb.mytrade.model.Rolle;
 @SessionScoped
 public class NeuerBenutzerController {
 
-	private NeuerBenutzerModel neuerBenutzer;
+	private NeuerBenutzerModel neuerBenutzer  = new NeuerBenutzerModel();
 	private NeuerBenutzerDao neuerBenutzerDao;
 
 	public String getName() {
@@ -76,7 +76,7 @@ public class NeuerBenutzerController {
 	// }
 
 	public NeuerBenutzerController() {
-		neuerBenutzer = new NeuerBenutzerModel();
+//		neuerBenutzer;
 		System.out.println("geht durch 4");
 		setNeuerBenutzer(new NeuerBenutzerModel());
 	}
@@ -97,17 +97,22 @@ public class NeuerBenutzerController {
 	public void setNeuerBenutzerDao(NeuerBenutzerDao neuerBenutzerDao) {
 		this.neuerBenutzerDao = neuerBenutzerDao;
 	}
-	
-	public String zurueck(){
+
+	public String zurueck() {
 		return "admin?faces-redirect=true";
 	}
-	
-	
+
 	public String benutzerspeichern() {
-		
-		neuerBenutzerDao = new NeuerBenutzerDao();
-		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(), neuerBenutzer.getVorname(), neuerBenutzer.getLogin(), neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
-		return "mein_portfolio?faces-redirect=true";
+
+		 neuerBenutzerDao = new NeuerBenutzerDao();
+		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(),
+				neuerBenutzer.getVorname(), neuerBenutzer.getLogin(),
+				neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
+		return "bestaetigung_benutzer?faces-redirect=true";
 	}
-	
+
+	public String weiter() {
+		return "admin?faces-redirect=true";
+	}
+
 }

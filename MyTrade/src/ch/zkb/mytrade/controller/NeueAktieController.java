@@ -20,14 +20,15 @@ public class NeueAktieController {
 
 	private AktieModel neueAktie = new AktieModel();
 	private NeueAktieDao neueAktieDao;
-	
+
 	public NeueAktieController() {
-		 neueAktieDao = new NeueAktieDao();
+		neueAktieDao = new NeueAktieDao();
 	}
+
 	public AktieModel getNeueAktie() {
 		return neueAktie;
 	}
-	
+
 	public void setNeueAktie(AktieModel neueAktie) {
 		this.neueAktie = neueAktie;
 	}
@@ -41,18 +42,23 @@ public class NeueAktieController {
 	}
 
 	public void setUser(UserModel user) {
-		UserModel currUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentUser");
-		currUser.getUser_id();		
-		neueAktie.setUser_id(currUser.getUser_id());		
+		UserModel currUser = (UserModel) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("currentUser");
+		currUser.getUser_id();
+		neueAktie.setUser_id(currUser.getUser_id());
 	}
 
-	public String zurueck(){
+	public String zurueck() {
 		return "admin?faces-redirect=true";
 	}
-	
+
 	public String aktieSpeichern() {
-		return neueAktieDao.neueAktie(neueAktie);
-	
+		neueAktieDao.neueAktie(neueAktie);
+		return "bestaetigung_aktie?faces-redirect=true";
+
 	}
-	
+	public String weiter() {
+		return "admin?faces-redirect=true";
+	}
+
 }

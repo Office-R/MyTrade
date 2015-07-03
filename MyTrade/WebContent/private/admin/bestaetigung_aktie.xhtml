@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Layout</title>
-<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
 </head>
 <body>
 	<f:view>My Trade<br />
@@ -62,7 +62,11 @@
 								value="#{neueAktieController.neueAktie.stueckZahl}"></h:outputText>
 						</td>
 					</tr>
-			
+					<tr>
+						<td><h:commandButton value="weiter"
+								action="#{neueAktieController.weiter()}" > </h:commandButton></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</h:form>
