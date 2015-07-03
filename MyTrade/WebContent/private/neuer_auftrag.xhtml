@@ -1,50 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html
-  xmlns  ="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta charset="ISO-8859-1" />
 <title>neuer_Auftrag</title>
- <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
-  	<h:form>
-  		<div id="hauptBox">
- 			<div id="navigationsBox" class="menuschrift">
-	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
-	 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin/admin.xhtml">Administration </a></div>
-	 			<div id="benuzerLinkBox">Benutzer</div>
-	 			<div id="abmeldenLinkBox">
-	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
-	 			</div>
- 			</div>
- 			<div id="meldungBox">Meldung</div>
- 			<div id="inhaltBox">
- 				<h1> Auftrag erfassen </h1>
-			<table> 
-				<tr>
-					<td>Aktie:</td>
-					<td> <h:outputLabel value="#{neuerAuftragController.neuerAuftragDao.aktie.name}"></h:outputLabel>  </td>
-				</tr>
-				<tr>
-					<td>Preis(CHF):</td>
-					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.vkPreis}"></h:inputText>  </td>
-				</tr>
-				<tr>
-					<td>Stückzahl(l-n):</td>
-					<td> <h:inputText value="#{neuerAuftragController.neuerAuftragDao.amount}"></h:inputText>  </td>
-				</tr>
-				<tr>
-					<td> <h:commandButton value="Zurück" /> </td>
-					<td> <h:commandButton value="verkaufen" action="#{neuerAuftragController.neuerAuftragDao.neuerAuftrag()}" />  </td>
-				</tr>				
-			</table> 
- 			</div>
+	<h:form>
+		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+				<div id="meinPortfolioLinkBox">
+					<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+				</div>
+				<div id="offeneAuftraegeLinkBox">
+					<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+				</div>
+				<div id="administrationLinkBox">
+					<a href="admin/admin.xhtml">Administration </a>
+				</div>
+				<div id="benuzerLinkBox">Benutzer</div>
+				<div id="abmeldenLinkBox">
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</div>
+			</div>
+			<div id="meldungBox">
+				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+			</div>
+			<div id="inhaltBox">
+				<h1>Auftrag erfassen</h1>
+				<table>
+					<tr>
+						<td>Aktie:</td>
+						<td><h:outputLabel
+								value="#{neuerAuftragController.neuerAuftragDao.aktie.name}"></h:outputLabel>
+						</td>
+					</tr>
+					<tr>
+						<td>Preis(CHF):</td>
+						<td><h:inputText
+								value="#{neuerAuftragController.neuerAuftragDao.vkPreis}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Stückzahl(l-n):</td>
+						<td><h:inputText
+								value="#{neuerAuftragController.neuerAuftragDao.amount}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Zurück" /></td>
+						<td><h:commandButton value="verkaufen"
+								action="#{neuerAuftragController.neuerAuftragDao.neuerAuftrag()}" />
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
- 	</h:form>
+	</h:form>
 
 
 </body>

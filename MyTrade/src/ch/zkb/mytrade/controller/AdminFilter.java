@@ -45,6 +45,7 @@ public class AdminFilter implements Filter {
 				debugOut("holeSessionVariable(): No session!");
 			} else {
 				session = (HttpSession) facesContext.getExternalContext().getSession(true);            		
+				
 			}
 		}
 		return session;

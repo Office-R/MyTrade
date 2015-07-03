@@ -22,43 +22,53 @@
 			</div>
 			<div id="benuzerLinkBox">Benutzer</div>
 			<div id="abmeldenLinkBox">
+<<<<<<< HEAD
 				<h:form action="/MyTrade/faces/logout.xhtml">
 	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
 	 			</h:form>
 	 		</div>
+=======
+				<h:form>
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</h:form>
+			</div>
+>>>>>>> branch 'master' of https://github.com/Office-R/MyTrade.git
 		</div>
-			
-				<div id="meldungBox">Meldung</div>
-				<div id="inhaltBox">
 
-				<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
-					border="1"  var="stock" emptyMessage="Keine Aktien vorhanden">
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
+		<div id="inhaltBox">
+
+			<h:dataTable value="#{meinPortfolioController.portfolioDao.aktien}"
+				border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
 
 
-					<h:column>
-						<f:facet name="header">Symbol</f:facet>
-						<h:outputText value="${stock.symbol}" />
-					</h:column>
+				<h:column>
+					<f:facet name="header">Symbol</f:facet>
+					<h:outputText value="${stock.symbol}" />
+				</h:column>
 
-					<h:column>
-						<f:facet name="header">Aktie</f:facet>
-						<h:outputText value="${stock.name}" />
-					</h:column>
+				<h:column>
+					<f:facet name="header">Aktie</f:facet>
+					<h:outputText value="${stock.name}" />
+				</h:column>
 
-					<h:column>
-						<f:facet name="header">letze Dividende</f:facet>
-						<h:outputText value="${stock.dividende}" />
-					</h:column>
+				<h:column>
+					<f:facet name="header">letze Dividende</f:facet>
+					<h:outputText value="${stock.dividende}" />
+				</h:column>
 
-					<h:column>
-						<f:facet name="header">aktion</f:facet>
-						<h:form>
-							<h:commandButton value="Verkaufen" 
-								action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
-						</h:form>
-					</h:column>
-				</h:dataTable>
-				</div>
+				<h:column>
+					<f:facet name="header">aktion</f:facet>
+					<h:form>
+						<h:commandButton value="Verkaufen"
+							action="#{meinPortfolioController.verkaufen(stock.aktie_id)}"></h:commandButton>
+					</h:form>
+				</h:column>
+			</h:dataTable>
+		</div>
 	</div>
 </body>
 </html>

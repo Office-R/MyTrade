@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html
-  xmlns  ="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta charset="ISO-8859-1" />
 <title>Layout</title>
- <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
 </head>
 <body>
-  		<div id="hauptBox">
- 			<div id="navigationsBox" class="menuschrift">
-	 			<div id="meinPortfolioLinkBox"><a href="mein_portfolio.xhtml">Mein Portfolio </a></div>
-	 			<div id="offeneAuftraegeLinkBox"><a href="offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin/admin.xhtml">Administration </a></div>
-	 			<div id="benuzerLinkBox">Benutzer</div>
-	 			<div id="abmeldenLinkBox">
-	 			<h:form>
-	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
-	 			</h:form>
-	 			</div>
- 			</div>
- 			<div id="meldungBox">Meldung</div>
- 			<div id="inhaltBox">
- 			
- 			
- 				<h:dataTable id="offeneAuftraege" value="${offeneAuftraegeController.offeneAuftraege.auftragListe}" border="1"
-				var="stock" emptyMessage="Keine Aktien vorhanden">
+	<div id="hauptBox">
+		<div id="navigationsBox" class="menuschrift">
+			<div id="meinPortfolioLinkBox">
+				<a href="mein_portfolio.xhtml">Mein Portfolio </a>
+			</div>
+			<div id="offeneAuftraegeLinkBox">
+				<a href="offene_auftraege.xhtml">Offene Aufträge </a>
+			</div>
+			<div id="administrationLinkBox">
+				<a href="admin/admin.xhtml">Administration </a>
+			</div>
+			<div id="benuzerLinkBox">Benutzer</div>
+			<div id="abmeldenLinkBox">
+				<h:form>
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</h:form>
+			</div>
+		</div>
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
+		<div id="inhaltBox">
+
+
+			<h:dataTable id="offeneAuftraege"
+				value="${offeneAuftraegeController.offeneAuftraege.auftragListe}"
+				border="1" var="stock" emptyMessage="Keine Aktien vorhanden">
 
 				<h:column sortBy="${stock.symbol}">
 					<f:facet name="header">Symbol</f:facet>
@@ -38,23 +47,23 @@
 					<f:facet name="header">Aktie</f:facet>
 					<h:outputText value="${stock.aktie}" />
 				</h:column>
-				
+
 				<h:column sortBy="${stock.preis}">
 					<f:facet name="header">Preis</f:facet>
 					<h:outputText value="${stock.preis}" />
 				</h:column>
-				
+
 				<h:column id="aktion" sortBy="${stock.aktion}">
 					<f:facet name="header">Aktion</f:facet>
-				<h:form>	
-					<h:commandButton value="${stock.aktion}" render=":aktion:offeneAuftraege" 
-						action="#{stock.buyOrStorno}"></h:commandButton>
-				</h:form>		
+					<h:form>
+						<h:commandButton value="${stock.aktion}"
+							render=":aktion:offeneAuftraege" action="#{stock.buyOrStorno}"></h:commandButton>
+					</h:form>
 				</h:column>
-				
+
 
 			</h:dataTable>
- 			</div>
 		</div>
+	</div>
 </body>
 </html>

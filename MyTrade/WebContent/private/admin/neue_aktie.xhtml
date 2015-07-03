@@ -29,8 +29,11 @@
 	 			<h:commandButton value="Logout" action="#{logoutController.logout}" ></h:commandButton>
 	 		</h:form>
 	 		</div>
+			</div>
 		</div>
-		<div id="meldungBox">Meldung</div>
+		<div id="meldungBox">
+			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+		</div>
 		<div id="inhaltBox">
 			<h1>Aktie erfassen</h1>
 			<h:form>
