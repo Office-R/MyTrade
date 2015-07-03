@@ -13,6 +13,13 @@ import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.AuftragModel;
 import ch.zkb.mytrade.model.UserModel;
 
+/**
+ * Data Access Object für das Anzeigen, Stornieren und Kaufen eines Auftrages.
+ * 
+ * @version 1.0
+ * @author Gabriel.Daw
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class OffeneAuftraegeDao {
@@ -61,9 +68,6 @@ public class OffeneAuftraegeDao {
 				auftrag.setBesitzer();
 				auftrag.setOffeneAuftraegeDao(this);
 
-				System.out.println(resultSet.getString("aktie.name"));
-				System.out.println(auftrag.getAktion());
-
 				auftragListe.add(auftrag);
 
 			}
@@ -104,7 +108,8 @@ public class OffeneAuftraegeDao {
 
 			prepStmt.close();
 			pooling.putConnection(con);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.STORNO);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.getSessionMap().put("Message", MeldungController.STORNO);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,9 +117,9 @@ public class OffeneAuftraegeDao {
 		}
 
 	}
-	
-	public double getKontostand(int userId){
-		
+
+	public double getKontostand(int userId) {
+
 		Connection con;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
@@ -129,7 +134,7 @@ public class OffeneAuftraegeDao {
 			sqlQuery = "SELECT user.kontostand FROM user WHERE user.user_id = ?";
 			prepStmt = con.prepareStatement(sqlQuery);
 			prepStmt.setInt(1, userId);
-			
+
 			resultSet = prepStmt.executeQuery();
 
 			if (resultSet.next()) {
@@ -137,22 +142,22 @@ public class OffeneAuftraegeDao {
 			}
 
 			prepStmt.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
-		
+
 		pooling.putConnection(con);
-		return 0;		
-		
+		return 0;
+
 	}
 
 	public synchronized void kauf(AuftragModel auftragModel) {
-		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
-                .getSessionMap().get("currentUser");
-		
-		if (getKontostand(currentUser.getUser_id()) >= auftragModel.getPreis()){
+		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("currentUser");
+
+		if (getKontostand(currentUser.getUser_id()) >= auftragModel.getPreis()) {
 			Connection con;
 			ConnectionPooling pooling;
 			pooling = ConnectionPoolingImplementation.getInstance(1, 5);
@@ -169,14 +174,14 @@ public class OffeneAuftraegeDao {
 				prepStmt.setInt(2, auftragModel.getAktie_id());
 
 				prepStmt.executeUpdate();
-				
+
 				sqlQuery = "UPDATE user SET user.kontostand = user.kontostand - ? WHERE user.user_id = ?";
 				prepStmt = con.prepareStatement(sqlQuery);
 				prepStmt.setDouble(1, auftragModel.getPreis());
 				prepStmt.setInt(2, currentUser.getUser_id());
 
 				prepStmt.executeUpdate();
-				
+
 				sqlQuery = "UPDATE user SET user.kontostand = user.kontostand + ? WHERE user.user_id = ?";
 				prepStmt = con.prepareStatement(sqlQuery);
 				prepStmt.setDouble(1, auftragModel.getPreis());
@@ -186,17 +191,19 @@ public class OffeneAuftraegeDao {
 
 				prepStmt.close();
 				pooling.putConnection(con);
-				
+
 				storno(auftragModel);
-				
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.AKTIE_BUY);
+
+				FacesContext.getCurrentInstance().getExternalContext()
+						.getSessionMap()
+						.put("Message", MeldungController.AKTIE_BUY);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
 		}
-		
+
 	}
 
 }

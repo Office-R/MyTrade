@@ -12,6 +12,15 @@ import ch.zkb.mytrade.controller.MeldungController;
 import ch.zkb.mytrade.model.AktieModel;
 import ch.zkb.mytrade.model.UserModel;
 
+/**
+ * Data Access Object erstellen eines Verkauf-Auftrages Es ist auch möglich
+ * mehrere Verkauf-Aufträge zu generieren.
+ * 
+ * @version 1.0
+ * @author Robin.Frehner
+ * @author Gabriel.Daw
+ *
+ */
 public class NeuerAuftragDao {
 
 	AktieModel aktie;
@@ -26,7 +35,6 @@ public class NeuerAuftragDao {
 	public void loadAktienProperties(int aktie_id) {
 		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance()
 				.getExternalContext().getSessionMap().get("currentUser");
-		System.out.println("id: " + aktie_id);
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
@@ -67,40 +75,40 @@ public class NeuerAuftragDao {
 		PreparedStatement prepStmt;
 		ConnectionPooling pooling;
 		pooling = ConnectionPoolingImplementation.getInstance(1, 5);
-		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentUser");
+		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("currentUser");
 
 		Connection c1 = pooling.getConnection();
 		String sqlQuery;
-		String symbol = aktie.getSymbol(); 
+		String symbol = aktie.getSymbol();
 		aktienListe.clear();
 		try {
 
-			sqlQuery = "SELECT aktie.aktie_id FROM aktie" + " JOIN symbol"
+			sqlQuery = "SELECT aktie.aktie_id FROM aktie"
+					+ " JOIN symbol"
 					+ " ON symbol.symbol_id = aktie.fk_symbol"
-					+ " WHERE symbol.symbol=?"  
+					+ " WHERE symbol.symbol=?"
 					+ " AND aktie.fk_user=?"
 					+ " AND aktie.aktie_id NOT IN (SELECT auftrag.fk_aktie FROM auftrag)";
 
 			prepStmt = c1.prepareStatement(sqlQuery);
 			prepStmt.setString(1, symbol);
-			prepStmt.setInt(2,  currentUser.getUser_id());
-			
+			prepStmt.setInt(2, currentUser.getUser_id());
+
 			ResultSet rs = prepStmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("IM NEXT");
 				aktienListe.add(rs.getInt("aktie.aktie_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);
-		return 	aktienListe.size();
+		return aktienListe.size();
 
 	}
 
 	public String neuerAuftrag(int anzahlAktien) {
 
-		
 		executeInsert(anzahlAktien);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.put("Message", MeldungController.AUFTRAG);
@@ -120,7 +128,6 @@ public class NeuerAuftragDao {
 			prepStmt.setDouble(1, vkPreis);
 
 			for (int i = 0; i < getAmount(); i++) {
-				System.out.println(i);
 				prepStmt.setInt(2, (Integer) aktienListe.get(i));
 
 				prepStmt.executeUpdate();

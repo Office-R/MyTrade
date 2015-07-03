@@ -14,48 +14,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ch.zkb.mytrade.model.Rolle;
+import ch.zkb.mytrade.model.RolleModel;
 import ch.zkb.mytrade.model.UserModel;
+
+/**
+ * Filter für die Seiten, auf die nur der Administrator zugreifen kann.
+ * 
+ * @version 1.0
+ * @author Gwendolin.Maggion
+ *
+ */
 
 @WebFilter("/faces/private/admin/*")
 public class AdminFilter implements Filter {
 
-	
-	boolean debug = true;
+	boolean debug = false;
+
 	private void debugOut(String meldung) {
-		if(debug) {
+		if (debug) {
 			System.out.println("Debug AdminFilter." + meldung);
 		}
 	}
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		debugOut("init(): AuthFilter...");
 	}
 
-/**
- * Versuche, die Session aus dem Request zu holen.
- * Ist das nicht möglich, so gehe über den FacesContext.
- */
+	/**
+	 * Versuche, die Session aus dem Request zu holen. Ist das nicht möglich, so
+	 * gehe über den FacesContext.
+	 */
 	HttpSession holeSessionVariable(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession(false);
-		if(null == session) {
+		if (null == session) {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
-			if(null == facesContext || null == facesContext.getExternalContext()) {
+			if (null == facesContext
+					|| null == facesContext.getExternalContext()) {
 				debugOut("holeSessionVariable(): No session!");
 			} else {
-				session = (HttpSession) facesContext.getExternalContext().getSession(true);            		
+				session = (HttpSession) facesContext.getExternalContext()
+						.getSession(true);
 			}
 		}
 		return session;
 	}
 
-
 	String meinPortfolioUrl = "http://localhost:8080/MyTrade/faces/private/mein_portfolio.xhtml";
 	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
 	String errorUrl = "http://localhost:8080/MyTrade/faces/404.xhtml";
-
-
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
@@ -63,16 +71,14 @@ public class AdminFilter implements Filter {
 		try {
 			debugOut("doFilter(): start...");
 
-			eigenerDoHTTPFilter((HttpServletRequest)  req, 
-			                    (HttpServletResponse) res, 
-			                    chain);	
+			eigenerDoHTTPFilter((HttpServletRequest) req,
+					(HttpServletResponse) res, chain);
 
 			debugOut("doFilter(): ... done.TraderoderAdmin");
 		} catch (Exception ex) {
 			System.out.println("Exception im MyAuthFilter " + ex);
 			ex.printStackTrace();
-			if(ex instanceof java.io.FileNotFoundException)
-			{
+			if (ex instanceof java.io.FileNotFoundException) {
 				((HttpServletResponse) res).sendRedirect(errorUrl);
 				debugOut("File wurde nicht gefunden");
 			}
@@ -86,55 +92,59 @@ public class AdminFilter implements Filter {
 	}
 
 	/**
-	 * Wie "doFilter", doch a) mit throws, statt try-catch und
-	 *                      b) mit HttpServlet, statt Servlet
+	 * Wie "doFilter", doch a) mit throws, statt try-catch und b) mit
+	 * HttpServlet, statt Servlet
 	 */
-	private void eigenerDoHTTPFilter(HttpServletRequest request, HttpServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-		if(null == holeSessionVariable(request)) {
+	private void eigenerDoHTTPFilter(HttpServletRequest request,
+			HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		if (null == holeSessionVariable(request)) {
 			response.sendRedirect(loginUrl);
 			return;
 		}
 
-		if(istLoginURL(request)) {
+		if (istLoginURL(request)) {
 			debugOut("eigenerDoHTTPFilter(): Request is login request!");
-			chain.doFilter(request, response); // hier drauf darf eingentlich jeder
+			chain.doFilter(request, response); // hier drauf darf eingentlich
+												// jeder
 			return;
 		}
-		UserModel user = (UserModel) holeSessionVariable(request).getAttribute("currentUser");
-		
-		
-		if(null == user){
+		UserModel user = (UserModel) holeSessionVariable(request).getAttribute(
+				"currentUser");
+
+		if (null == user) {
 			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
 			response.sendRedirect(loginUrl);
 			return;
 		}
-		
-		if(user.getRolle() == Rolle.ADMINISTRATOR) {
+
+		if (user.getRolle() == RolleModel.ADMINISTRATOR) {
 			debugOut("eigenerDoHTTPFilter(): Administrator ist angemeldet");
-			chain.doFilter(request, response); // jeder, da öffentlich	
+			chain.doFilter(request, response); // jeder, da öffentlich
 			return;
 		}
-		if(user.getRolle() == Rolle.TRADER) {
+		if (user.getRolle() == RolleModel.TRADER) {
 			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
-		    holeSessionVariable(request).setAttribute("Message", MeldungController.ACCESS_DENIED);
+			holeSessionVariable(request).setAttribute("Message",
+					MeldungController.ACCESS_DENIED);
 			response.sendRedirect(meinPortfolioUrl);
 			return;
 		}
 
 	}
-//	private void behandleLeereSession(HttpServletRequest  request,
-//	            HttpServletResponse response,
-//	            FilterChain         chain)
-//	throws IOException, ServletException 
-//	{
-//	debugOut("behandleLeereSession(): Session ist null");
-//	if(istOeffentlicheSeite(request) || istLoginURL(request)) {
-//	chain.doFilter(request, response);	
-//	} else {
-//	response.sendRedirect(loginUrl);
-//	}
-//	}
+
+	// private void behandleLeereSession(HttpServletRequest request,
+	// HttpServletResponse response,
+	// FilterChain chain)
+	// throws IOException, ServletException
+	// {
+	// debugOut("behandleLeereSession(): Session ist null");
+	// if(istOeffentlicheSeite(request) || istLoginURL(request)) {
+	// chain.doFilter(request, response);
+	// } else {
+	// response.sendRedirect(loginUrl);
+	// }
+	// }
 
 	@Override
 	public void destroy() {

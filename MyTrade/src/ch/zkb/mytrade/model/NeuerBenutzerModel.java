@@ -7,14 +7,21 @@ public class NeuerBenutzerModel  {
 	private String login;
 	private String passwort;
 	private int user_id;
-	Rolle rolle;
+	RolleModel rolle;
 	
+	/**
+	 * Model das einen neuen User abbildet
+	 * 
+	 * @version 1.0
+	 * @author Gwendolin.Maggion
+	 *
+	 */
 	public NeuerBenutzerModel(){
 		name = "";
 		vorname = "";
 		login = "";
 		passwort = "";
-		rolle = Rolle.TRADER;
+		rolle = RolleModel.TRADER;
 //		Administrator
 		
 	}	
@@ -22,11 +29,11 @@ public class NeuerBenutzerModel  {
 	public String getName() {
 		return name;
 	}
-	public Rolle getRolle() {
+	public RolleModel getRolle() {
 		return rolle;
 	}
 
-	public void setRolle(Rolle rolle) {
+	public void setRolle(RolleModel rolle) {
 		this.rolle = rolle;
 	}
 	

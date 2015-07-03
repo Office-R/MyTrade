@@ -1,19 +1,26 @@
 package ch.zkb.mytrade.model;
 
+/**
+ * Model das eine Aktie abbildet.
+ * 
+ * @version 1.0
+ * @author Gabriel.Daw
+ *
+ */
 public class AktieModel {
-	private int       aktie_id;
-	private String    name;
-	private double    nominalpreis;
-	private double    dividende;
+	private int aktie_id;
+	private String name;
+	private double nominalpreis;
+	private double dividende;
 	private UserModel user;
-	private int		  user_id;
-	private String    symbol;
-	private int		  stueckZahl;
-	
+	private int user_id;
+	private String symbol;
+	private int stueckZahl;
+
 	public AktieModel() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public int getStueckZahl() {
 		return stueckZahl;
 	}
@@ -21,7 +28,6 @@ public class AktieModel {
 	public void setStueckZahl(int stueckZahl) {
 		this.stueckZahl = stueckZahl;
 	}
-
 
 	public int getUser_id() {
 		return user_id;
@@ -78,5 +84,5 @@ public class AktieModel {
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-	
+
 }

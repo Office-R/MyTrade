@@ -1,19 +1,21 @@
 package ch.zkb.mytrade.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.NeueAktieDao;
-import ch.zkb.mytrade.dao.NeuerBenutzerDao;
 import ch.zkb.mytrade.model.AktieModel;
-import ch.zkb.mytrade.model.NeuerBenutzerModel;
-import ch.zkb.mytrade.model.Rolle;
 import ch.zkb.mytrade.model.UserModel;
 
+/**
+ * Controller zum erstellen einer neuen Aktie. Ruft die Methode auf um eine oder
+ * mehrere Aktie zu erstellen auf.
+ * 
+ * @version 1.0
+ * @author Gabriel.Daw
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class NeueAktieController {
@@ -51,16 +53,17 @@ public class NeueAktieController {
 	public String zurueck1() {
 		return "admin?faces-redirect=true";
 	}
-	
+
 	public String zurueck2() {
 		return "neue_aktie?faces-redirect=true";
 	}
 
 	public String aktieSpeichern() {
-		
+
 		return "bestaetigung_aktie?faces-redirect=true";
 
 	}
+
 	public String weiter() {
 		neueAktieDao.neueAktie(neueAktie);
 		return "admin?faces-redirect=true";

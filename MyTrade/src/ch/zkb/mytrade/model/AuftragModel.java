@@ -4,7 +4,13 @@ import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.OffeneAuftraegeDao;
 
-
+/**
+ * Model das einen Verkaufs-Auftrag abbildet.
+ * 
+ * @version 1.0
+ * @author Robin.Frehner
+ *
+ */
 public class AuftragModel {
 	private int auftrag_id;
 	private int aktie_id;
@@ -79,45 +85,35 @@ public class AuftragModel {
 	}
 
 	public boolean setBesitzer() {
-		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance().getExternalContext()
-                .getSessionMap().get("currentUser");
-		
+		UserModel currentUser = (UserModel) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("currentUser");
+
 		if (currentUser != null) {
 			currentUserLogin = currentUser.getLogin();
-		}
-		else{
+		} else {
 			throw new NullPointerException();
 		}
-		
-		
+
 		this.isBesitzer = currentUserLogin.equals(this.login);
-		System.out.println(currentUser.getLogin());
-		System.out.println(this.login);
-		
+
 		return isBesitzer;
 	}
-	
-	public String getAktion(){
-		if(this.isBesitzer){
+
+	public String getAktion() {
+		if (this.isBesitzer) {
 			return "stornieren";
 		}
 		return "kaufen";
 	}
-	
-	public String buyOrStorno(){
-		if (this.isBesitzer){
+
+	public String buyOrStorno() {
+		if (this.isBesitzer) {
 			offeneAuftraegeDao.storno(this);
-			System.out.println("storniert!");
-		}else{
+		} else {
 			offeneAuftraegeDao.kauf(this);
-			System.out.println(this.getPreis());
-			System.out.println(this.getAuftrag_id());
-			System.out.println(this.getAktie_id());
-			System.out.println(this.getAktie());
-			
-			//kaufen	
+
 		}
-	return "mein_portfolio?faces-redirect=true";
+		return "mein_portfolio?faces-redirect=true";
 	}
 
 	public OffeneAuftraegeDao getOffeneAuftraegeDao() {
@@ -135,7 +131,5 @@ public class AuftragModel {
 	public void setBesitzer_id(int besitzer_id) {
 		this.besitzer_id = besitzer_id;
 	}
-	
-	
-		
+
 }
