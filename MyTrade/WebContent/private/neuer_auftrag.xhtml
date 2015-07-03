@@ -53,14 +53,14 @@
 								<f:validateLongRange minimum="1"
 									maximum="${neuerAuftragController.anzahlAktien}" />
 							</h:inputText></td>
-							<td><h:message for="amount"
+						<td><h:message for="amount"
 								errorStyle="color:red; display:block" /></td>
 					</tr>
 					<tr>
-						<td><h:commandButton value="neuerAuftragController.zurueck()" /></td>
+						<td><h:commandButton value="Zurück"
+								action="neuerAuftragController.zurueck()" /></td>
 						<td><h:commandButton value="verkaufen"
-								action="#{neuerAuftragController.neuerAuftrag()}" />
-						</td>
+								action="#{neuerAuftragController.neuerAuftrag()}" /></td>
 					</tr>
 				</table>
 			</div>
