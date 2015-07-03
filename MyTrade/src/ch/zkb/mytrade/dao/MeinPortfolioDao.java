@@ -20,7 +20,9 @@ public class MeinPortfolioDao {
 		System.out.println("meinPortFolioDao");
 		aktien = new ArrayList<AktieModel>();
 	}
-	
+	/**
+	 * 
+	 */
 	public synchronized void getStocks()
 	{
 		aktien.clear();
@@ -60,6 +62,7 @@ public class MeinPortfolioDao {
 			prepStmt.close();
 			
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);
@@ -68,7 +71,6 @@ public class MeinPortfolioDao {
 	public ArrayList<AktieModel> getAktien() {
 		return aktien;
 	}
-
 	public void setAktien(ArrayList<AktieModel> aktien) {
 		this.aktien = aktien;
 	}

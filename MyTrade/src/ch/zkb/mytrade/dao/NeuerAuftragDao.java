@@ -54,6 +54,7 @@ public class NeuerAuftragDao {
 				aktie.setSymbol(rs.getString("symbol.symbol"));
 			}
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 
@@ -91,6 +92,7 @@ public class NeuerAuftragDao {
 				aktienListe.add(rs.getInt("aktie.aktie_id"));
 			}
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);
@@ -127,6 +129,7 @@ public class NeuerAuftragDao {
 			}
 
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);

@@ -60,6 +60,7 @@ public class LoginDao {
 			}
 			
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);

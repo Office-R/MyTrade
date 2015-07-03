@@ -69,12 +69,12 @@ public class OffeneAuftraegeDao {
 			}
 			resultSet.close();
 			prepStmt.close();
-			pooling.putConnection(con);
 
 		} catch (Exception e) {
+			pooling.putConnection(con);
 			e.printStackTrace();
-
 		}
+		pooling.putConnection(con);
 	}
 
 	public ArrayList<AuftragModel> getAuftragListe() {

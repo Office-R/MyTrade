@@ -1,61 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html
-  xmlns  ="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta charset="ISO-8859-1" />
 <title>neuerBenutzer</title>
- <link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
 </head>
 <body>
-  	<h:form>
-  		<div id="hauptBox">
- 			<div id="navigationsBox" class="menuschrift">
-	 			<div id="meinPortfolioLinkBox"><a href="../mein_portfolio.xhtml">Mein Portfolio </a></div>
-	 			<div id="offeneAuftraegeLinkBox"><a href="../offene_auftraege.xhtml">Offene Aufträge </a></div>
-	 			<div id="administrationLinkBox"><a href="admin.xhtml">Administration </a></div>
-	 			<div id="benuzerLinkBox">Benutzer</div>
-	 			<div id="abmeldenLinkBox">
-	 			<h:commandButton value="Logout" action="#{logoutController.logout()}" ></h:commandButton>
-	 			</div>
- 			</div>
+	<h:form>
+		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+				<div id="meinPortfolioLinkBox">
+					<a href="../mein_portfolio.xhtml">Mein Portfolio </a>
+				</div>
+				<div id="offeneAuftraegeLinkBox">
+					<a href="../offene_auftraege.xhtml">Offene Aufträge </a>
+				</div>
+				<div id="administrationLinkBox">
+					<a href="admin.xhtml">Administration </a>
+				</div>
+				<div id="benuzerLinkBox">Benutzer</div>
+				<div id="abmeldenLinkBox">
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</div>
+			</div>
 			<div id="meldungBox">
 				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
 			</div>
 			<div id="inhaltBox">
- 				<h1> Benutzer erfassen </h1>
-					<table> 
-						<tr>
-							<td>Name:</td>
-							<td> <h:inputText value="#{neuerBenutzerController.name}"></h:inputText> </td>
-						</tr>
-						<tr>
-							<td>Vorname:</td>
-							<td> <h:inputText value="#{neuerBenutzerController.vorname}"></h:inputText>  </td>
-						</tr>
-						<tr>
-							<td>Login:</td>
-							<td> <h:inputText value="#{neuerBenutzerController.login}"></h:inputText>  </td>
-						</tr>
-						<tr>
-							<td>Passwort:</td>
-							<td> <h:inputText value="#{neuerBenutzerController.passwort}"></h:inputText>  </td>
-						</tr>
-						<tr>
-							<td>Rolle:</td>
-							<td> <h:selectOneMenu value="#{neuerBenutzerController.rolle}" >
-                    <f:selectItems value="#{neuerBenutzerController.rollen}" />
-                </h:selectOneMenu>  </td>
-						</tr>
-						<tr>
-							<td> <h:commandButton value="Zurück" action="#{neuerBenutzerController.zurueck1()}" /></td>
-							<td> <h:commandButton value="OK" action="#{neuerBenutzerController.benutzerspeichern()}" />  </td>
-						</tr>				
-					</table> 
- 			</div>
+				<h1>Benutzer erfassen</h1>
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td><h:inputText value="#{neuerBenutzerController.name}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Vorname:</td>
+						<td><h:inputText value="#{neuerBenutzerController.vorname}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Login:</td>
+						<td><h:inputText value="#{neuerBenutzerController.login}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Passwort:</td>
+						<td><h:inputText value="#{neuerBenutzerController.passwort}"></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>Rolle:</td>
+						<td><h:selectOneMenu value="#{neuerBenutzerController.rolle}">
+								<f:selectItems value="#{neuerBenutzerController.rollen}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Zurück"
+								action="#{neuerBenutzerController.zurueck1()}" /></td>
+						<td><h:commandButton value="OK"
+								action="#{neuerBenutzerController.benutzerspeichern()}" /></td>
+					</tr>
+				</table>
+			</div>
 		</div>
- 	</h:form>
+	</h:form>
 </body>
 </html>

@@ -50,6 +50,7 @@ public class NeuerBenutzerDao {
 			prepStmt.close();
 
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.BENUTZER_ADDED);

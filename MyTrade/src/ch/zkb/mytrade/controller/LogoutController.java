@@ -5,6 +5,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import ch.zkb.mytrade.model.UserModel;
+
 @ManagedBean
 @SessionScoped
 public class LogoutController {
@@ -15,7 +17,9 @@ public class LogoutController {
 	public synchronized String logout(){
 		
 		System.out.println("logout");
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentUser");
+//		UserModel user = (UserModel)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentUser");
+//		user = null;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentUser", null);
 		return "/MyTrade/faces/login"; //?faces-redirect=true";
 			
 	}

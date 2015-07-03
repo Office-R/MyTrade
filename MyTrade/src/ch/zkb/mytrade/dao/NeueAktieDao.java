@@ -92,6 +92,7 @@ public class NeueAktieDao {
 			
 
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		

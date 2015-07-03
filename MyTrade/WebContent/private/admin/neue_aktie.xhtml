@@ -13,29 +13,29 @@
 	</f:view>
 	<h:form>
 
-	<div id="hauptBox">
-		<div id="navigationsBox" class="menuschrift">
-			<div id="meinPortfolioLinkBox">
-				<a href="../mein_portfolio.xhtml">Mein Portfolio </a>
+		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+				<div id="meinPortfolioLinkBox">
+					<a href="../mein_portfolio.xhtml">Mein Portfolio </a>
+				</div>
+				<div id="offeneAuftraegeLinkBox">
+					<a href="../offene_auftraege.xhtml">Offene Aufträge </a>
+				</div>
+				<div id="administrationLinkBox">
+					<a href="admin.xhtml">Administration </a>
+				</div>
+				<div id="benuzerLinkBox">Benutzer</div>
+				<div id="abmeldenLinkBox">
+					<h:commandButton value="Logout" action="#{logoutController.logout}"></h:commandButton>
+				</div>
 			</div>
-			<div id="offeneAuftraegeLinkBox">
-				<a href="../offene_auftraege.xhtml">Offene Aufträge </a>
+
+			<div id="meldungBox">
+				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
 			</div>
-			<div id="administrationLinkBox">
-				<a href="admin.xhtml">Administration </a>
-			</div>
-			<div id="benuzerLinkBox">Benutzer</div>
-			<div id="abmeldenLinkBox">
-	 			<h:commandButton value="Logout" action="#{logoutController.logout}" ></h:commandButton>
-	 		</div>
-		</div>
-		
-		<div id="meldungBox">
-			<h:outputLabel value="${meldungController.message}"></h:outputLabel>
-		</div>
-		<div id="inhaltBox">
-			<h1>Aktie erfassen</h1>
-			
+			<div id="inhaltBox">
+				<h1>Aktie erfassen</h1>
+
 				<table>
 					<tr>
 						<td>Name:</td>
@@ -72,8 +72,8 @@
 								action="#{neueAktieController.aktieSpeichern()}" /></td>
 					</tr>
 				</table>
+			</div>
 		</div>
-	</div>
 	</h:form>
 </body>
 </html>

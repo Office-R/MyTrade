@@ -45,6 +45,7 @@ public class DividendeDao {
 			prepStmt.close();
 			
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		pooling.putConnection(c1);
@@ -94,6 +95,7 @@ public class DividendeDao {
 			prepStmt.close();
 			
 		} catch (SQLException e) {
+			pooling.putConnection(c1);
 			e.printStackTrace();
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.DIVIDENDE);
