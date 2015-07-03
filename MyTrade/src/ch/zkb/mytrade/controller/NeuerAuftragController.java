@@ -32,6 +32,10 @@ public class NeuerAuftragController {
 		return "mein_portfolio?faces-redirect=true";
 	}
 	
+	public String zurueck() {
+		return "mein_portfolio?faces-redirect=true";
+	}
+	
 	public int getAnzahlAktien() {
 		return anzahlAktien;
 	}
