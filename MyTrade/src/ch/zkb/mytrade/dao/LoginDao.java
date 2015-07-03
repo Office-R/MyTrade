@@ -53,9 +53,12 @@ public class LoginDao {
 				Map<String, Object> sessionMap =  externalContext.getSessionMap();
 				sessionMap.put("currentUser", user);
 				return "private/mein_portfolio?faces-redirect=true";
-				
 			}
-			prepStmt.close();
+			else{
+				prepStmt.close();
+				return null;
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Layout</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+	<f:view>My Trade<br />
+	</f:view>
+	<h:form>
+		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+				<div id="meinPortfolioLinkBox">
+					<a href="login.xhtml">Login</a>
+					<h:form>	
+						<h:commandButton value="Zurück" action="#{notFoundController.sendBack()}"></h:commandButton>
+					</h:form>
+				</div>
+			</div>
+			<div id="meldungBox">
+			</div>
+			<div id="inhaltBox"><h1>Diese Seite existiert nicht</h1></div>
+		</div>
+	</h:form>
+</body>
+</html>
