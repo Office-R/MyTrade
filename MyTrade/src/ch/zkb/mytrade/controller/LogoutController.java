@@ -16,7 +16,6 @@ import ch.zkb.mytrade.model.UserModel;
  * @author Gwendolin.Maggion
  *
  */
-
 @ManagedBean
 @SessionScoped
 public class LogoutController {
