@@ -24,7 +24,7 @@ public class AdminFilter implements Filter {
 	boolean debug = true;
 	private void debugOut(String meldung) {
 		if(debug) {
-			System.out.println("Debug MyAuthFilter." + meldung);
+			System.out.println("Debug AdminFilter." + meldung);
 		}
 	}
 	@Override
@@ -53,6 +53,7 @@ public class AdminFilter implements Filter {
 
 	String meinPortfolioUrl = "http://localhost:8080/MyTrade/faces/private/mein_portfolio.xhtml";
 	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
+	String errorUrl = "http://localhost:8080/MyTrade/faces/404.xhtml";
 
 
 
@@ -70,6 +71,11 @@ public class AdminFilter implements Filter {
 		} catch (Exception ex) {
 			System.out.println("Exception im MyAuthFilter " + ex);
 			ex.printStackTrace();
+			if(ex instanceof java.io.FileNotFoundException)
+			{
+				((HttpServletResponse) res).sendRedirect(errorUrl);
+				debugOut("File wurde nicht gefunden");
+			}
 		}
 	}
 
