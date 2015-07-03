@@ -7,22 +7,30 @@ import javax.servlet.http.HttpSession;
 
 import ch.zkb.mytrade.model.UserModel;
 
+
+/**
+ * Controller für den Logout-Button. Löscht CurrentUser aus der Session und
+ * leitet auf die Login Seite weiter.
+ * 
+ * @version 1.0
+ * @author Gwendolin.Maggion
+ *
+ */
+
 @ManagedBean
 @SessionScoped
 public class LogoutController {
-	
+
 	public LogoutController() {
-		// TODO Auto-generated constructor stub
+
 	}
-	public synchronized String logout(){
-		
-		System.out.println("logout");
-//		UserModel user = (UserModel)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentUser");
-//		user = null;
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentUser", null);
-		return "/MyTrade/faces/login"; //?faces-redirect=true";
-			
+
+	public synchronized String logout() {
+
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.remove("currentUser");
+		return "/MyTrade/faces/login"; // ?faces-redirect=true";
+
 	}
-	
 
 }

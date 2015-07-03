@@ -7,12 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Connection Pool implementation.
- * MIN_CONNECTIONS are always built: Typically 1 (or 0: lazy instantiation).
- * More than MAX_CONNECTIONS will never be initialized.
+ * Connection Pool implementation. MIN_CONNECTIONS are always built: Typically 1
+ * (or 0: lazy instantiation). More than MAX_CONNECTIONS will never be
+ * initialized.
+ * 
  * @version 0.1 (May 27, 2015)
- * @author Philipp Gressly Freimann 
- *         (philipp.gressly@santis.ch)
+ * @author Philipp Gressly Freimann (philipp.gressly@santis.ch)
  */
 public class ConnectionPoolingImplementation implements ConnectionPooling {
 
@@ -23,16 +23,16 @@ public class ConnectionPoolingImplementation implements ConnectionPooling {
 	private List<Connection> busyPool;
 
 	// TODO: Dependency inject (Property file)
-	final String treiberName   = "com.mysql.jdbc.Driver";
+	final String treiberName = "com.mysql.jdbc.Driver";
 	// TODO: Property file
-	final String connectionURL = "jdbc:mysql://192.168.1.83/mydb"; 
+	final String connectionURL = "jdbc:mysql://192.168.1.83/mydb";
 
 	// TODO: Security: store username and pwd externally
-	private String myUserName    = "mytradeuser";
-	private String myPassword    = "password";
+	private String myUserName = "mytradeuser";
+	private String myPassword = "password";
 
-
-	private ConnectionPoolingImplementation(int min, int max) throws ClassNotFoundException, SQLException {
+	private ConnectionPoolingImplementation(int min, int max)
+			throws ClassNotFoundException, SQLException {
 		Class.forName(treiberName);
 
 		MIN_CONNECTIONS = min;
@@ -40,36 +40,34 @@ public class ConnectionPoolingImplementation implements ConnectionPooling {
 		initConnections();
 	}
 
-
 	private void initConnections() throws SQLException {
 		freePool = new LinkedList<Connection>();
 		busyPool = new LinkedList<Connection>();
-		for(int i = 0; i < MIN_CONNECTIONS; i++) {
+		for (int i = 0; i < MIN_CONNECTIONS; i++) {
 			Connection con;
 			con = createConnection();
 			freePool.add(con);
 		}
 	}
 
-
 	/**
 	 * Create a SQL-Connection object
 	 */
 	private Connection createConnection() throws SQLException {
 		Connection con;
-		con = DriverManager.getConnection(connectionURL, 
-		    myUserName, myPassword);
+		con = DriverManager
+				.getConnection(connectionURL, myUserName, myPassword);
 		return con;
 	}
 
-/**
- * Singleton-Pattern
- */
+	/**
+	 * Singleton-Pattern
+	 */
 	private static ConnectionPoolingImplementation theInstance = null;
 
-
-	public static synchronized ConnectionPoolingImplementation getInstance(int min, int max) {
-		if(null == theInstance) {
+	public static synchronized ConnectionPoolingImplementation getInstance(
+			int min, int max) {
+		if (null == theInstance) {
 			try {
 				theInstance = new ConnectionPoolingImplementation(min, max);
 			} catch (Exception e) {
@@ -81,25 +79,26 @@ public class ConnectionPoolingImplementation implements ConnectionPooling {
 		return theInstance;
 	}
 
-
 	@Override
 	public synchronized Connection getConnection() {
 		Connection con = null;
-		if(0 < freePool.size()) {
+		if (0 < freePool.size()) {
 			con = freePool.remove(0);
 			busyPool.add(con);
 			return con;
 		}
 		// no more free connections:
-		if(totalConnectionCount() >= MAX_CONNECTIONS) {
-			System.out.println("No more space in the pools. MAX (" +
-		                     MAX_CONNECTIONS + ") exceeded.");
+		if (totalConnectionCount() >= MAX_CONNECTIONS) {
+			System.out.println("No more space in the pools. MAX ("
+					+ MAX_CONNECTIONS + ") exceeded.");
 			return null;
 		}
 		try {
 			con = createConnection();
 		} catch (SQLException e) {
-			System.out.println("Error (ConnectionPoolImplementation.getConnection()): " + e);
+			System.out
+					.println("Error (ConnectionPoolImplementation.getConnection()): "
+							+ e);
 			e.printStackTrace();
 			return null;
 		}
@@ -107,29 +106,27 @@ public class ConnectionPoolingImplementation implements ConnectionPooling {
 		return con;
 	}
 
-
 	@Override
 	public synchronized void putConnection(Connection con) {
-		//TODO: Check, if con = null
-		if(busyPool.remove(con)) {
+		// TODO: Check, if con = null
+		if (busyPool.remove(con)) {
 			freePool.add(con);
 			return;
 		}
 		System.out.println("Error: Connection was not `busy`.");
 	}
 
-
 	private int totalConnectionCount() {
 		return freePool.size() + busyPool.size();
 	}
 
 	/**
-	 * Debug purpuse. 
+	 * Debug purpuse.
 	 */
 	@Override
 	public String toString() {
-		return "ConnectionPooling. Free: " + freePool.size() +
-		       " Busy: " + busyPool.size();
+		return "ConnectionPooling. Free: " + freePool.size() + " Busy: "
+				+ busyPool.size();
 	}
 }
- // end of class ConnectionPoolingImplementation
+// end of class ConnectionPoolingImplementation

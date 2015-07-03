@@ -6,6 +6,15 @@ import javax.faces.context.FacesContext;
 
 import ch.zkb.mytrade.dao.NeuerAuftragDao;
 
+/**
+ * Controller zum Erstellen eines neuen Verkauf-Auftrages. Ruft die Methode auf,
+ * um Aktien zu verkaufen.
+ * 
+ * @version 1.0
+ * @author Robin.Frehner
+ * @author Gabriel.Daw
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class NeuerAuftragController {

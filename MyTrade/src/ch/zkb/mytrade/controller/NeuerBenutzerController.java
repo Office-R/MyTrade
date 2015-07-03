@@ -8,26 +8,31 @@ import javax.faces.bean.SessionScoped;
 
 import ch.zkb.mytrade.dao.NeuerBenutzerDao;
 import ch.zkb.mytrade.model.NeuerBenutzerModel;
-import ch.zkb.mytrade.model.Rolle;
+import ch.zkb.mytrade.model.RolleModel;
 
 @ManagedBean
 @SessionScoped
+/**
+ * Controller für das Erstellen eines neuen Benutzers.
+ * 
+ * @version 1.0
+ * @author Gwendolin.Maggion
+ *
+ */
 public class NeuerBenutzerController {
 
-	private NeuerBenutzerModel neuerBenutzer  = new NeuerBenutzerModel();
+	private NeuerBenutzerModel neuerBenutzer = new NeuerBenutzerModel();
 	private NeuerBenutzerDao neuerBenutzerDao;
 
 	public String getName() {
 		return neuerBenutzer.getName();
 	}
 
-	public Rolle getRolle() {
-		System.out.println("geht durch 2");
+	public RolleModel getRolle() {
 		return neuerBenutzer.getRolle();
 	}
 
-	public void setRolle(Rolle rolle) {
-		System.out.println("geht durch 3 " + rolle);
+	public void setRolle(RolleModel rolle) {
 		neuerBenutzer.setRolle(rolle);
 	}
 
@@ -59,14 +64,13 @@ public class NeuerBenutzerController {
 		neuerBenutzer.setPasswort(passwort);
 	}
 
-	private HashMap<String, Rolle> rollen;
+	private HashMap<String, RolleModel> rollen;
 
-	public Map<String, Rolle> getRollen() {
-		System.out.println("geht durch 1");
-		rollen = new HashMap<String, Rolle>();
+	public Map<String, RolleModel> getRollen() {
+		rollen = new HashMap<String, RolleModel>();
 
-		rollen.put("Administrator", Rolle.ADMINISTRATOR);
-		rollen.put("Trader", Rolle.TRADER);
+		rollen.put("Administrator", RolleModel.ADMINISTRATOR);
+		rollen.put("Trader", RolleModel.TRADER);
 
 		return rollen;
 	}
@@ -76,8 +80,7 @@ public class NeuerBenutzerController {
 	// }
 
 	public NeuerBenutzerController() {
-//		neuerBenutzer;
-		System.out.println("geht durch 4");
+		// neuerBenutzer;
 		setNeuerBenutzer(new NeuerBenutzerModel());
 	}
 
@@ -101,7 +104,7 @@ public class NeuerBenutzerController {
 	public String zurueck1() {
 		return "admin?faces-redirect=true";
 	}
-	
+
 	public String zurueck2() {
 		return "neuer_benutzer?faces-redirect=true";
 	}
