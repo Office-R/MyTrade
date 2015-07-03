@@ -133,18 +133,6 @@ public class AdminFilter implements Filter {
 
 	}
 
-	// private void behandleLeereSession(HttpServletRequest request,
-	// HttpServletResponse response,
-	// FilterChain chain)
-	// throws IOException, ServletException
-	// {
-	// debugOut("behandleLeereSession(): Session ist null");
-	// if(istOeffentlicheSeite(request) || istLoginURL(request)) {
-	// chain.doFilter(request, response);
-	// } else {
-	// response.sendRedirect(loginUrl);
-	// }
-	// }
 
 	@Override
 	public void destroy() {

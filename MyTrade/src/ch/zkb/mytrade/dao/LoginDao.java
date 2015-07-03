@@ -61,6 +61,7 @@ public class LoginDao {
 				return "private/mein_portfolio?faces-redirect=true";
 			} else {
 				prepStmt.close();
+				pooling.putConnection(c1);
 				return null;
 			}
 
