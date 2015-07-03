@@ -48,16 +48,21 @@ public class NeueAktieController {
 		neueAktie.setUser_id(currUser.getUser_id());
 	}
 
-	public String zurueck() {
+	public String zurueck1() {
 		return "admin?faces-redirect=true";
+	}
+	
+	public String zurueck2() {
+		return "neue_aktie?faces-redirect=true";
 	}
 
 	public String aktieSpeichern() {
-		neueAktieDao.neueAktie(neueAktie);
+		
 		return "bestaetigung_aktie?faces-redirect=true";
 
 	}
 	public String weiter() {
+		neueAktieDao.neueAktie(neueAktie);
 		return "admin?faces-redirect=true";
 	}
 

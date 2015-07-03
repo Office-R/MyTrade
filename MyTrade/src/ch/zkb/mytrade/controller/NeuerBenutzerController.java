@@ -98,20 +98,23 @@ public class NeuerBenutzerController {
 		this.neuerBenutzerDao = neuerBenutzerDao;
 	}
 
-	public String zurueck() {
+	public String zurueck1() {
 		return "admin?faces-redirect=true";
+	}
+	
+	public String zurueck2() {
+		return "neuer_benutzer?faces-redirect=true";
 	}
 
 	public String benutzerspeichern() {
-
-		 neuerBenutzerDao = new NeuerBenutzerDao();
-		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(),
-				neuerBenutzer.getVorname(), neuerBenutzer.getLogin(),
-				neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
 		return "bestaetigung_benutzer?faces-redirect=true";
 	}
 
 	public String weiter() {
+		neuerBenutzerDao = new NeuerBenutzerDao();
+		neuerBenutzerDao.neuerBenutzer(neuerBenutzer.getName(),
+				neuerBenutzer.getVorname(), neuerBenutzer.getLogin(),
+				neuerBenutzer.getPasswort(), neuerBenutzer.getRolle());
 		return "admin?faces-redirect=true";
 	}
 
