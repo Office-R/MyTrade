@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Layout</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+<body>
+	<f:view>My Trade<br />
+	</f:view>
+	<h:form>
+		<div id="hauptBox">
+			<div id="navigationsBox" class="menuschrift">
+				<div id="meinPortfolioLinkBox">
+					<a href="private/admin/mein_portfolio.xhtml">Mein Portfolio </a>
+				</div>
+				<div id="offeneAuftraegeLinkBox">
+					<a href="private/offene_auftraege.xhtml">Offene Aufträge </a>
+				</div>
+				<div id="administrationLinkBox">
+					<a href="private/admin/admin.xhtml">Administration </a>
+				</div>
+				<div id="benuzerLinkBox">Benutzer</div>
+				<div id="abmeldenLinkBox">
+					<h:commandButton value="Logout"
+						action="#{logoutController.logout()}"></h:commandButton>
+				</div>
+			</div>
+			<div id="meldungBox">
+				<h:outputLabel value="${meldungController.message}"></h:outputLabel>
+			</div>
+			<div id="inhaltBox">
+			<table> 
+						<tr>
+							<td>Name:</td>
+							<td> <h:outputText value="#{neuerBenutzerController.name}"></h:outputText> </td>
+						</tr>
+						<tr>
+							<td>Vorname:</td>
+							<td> <h:outputText value="#{neuerBenutzerController.vorname}"></h:outputText>  </td>
+						</tr>
+						<tr>
+							<td>Login:</td>
+							<td> <h:outputText value="#{neuerBenutzerController.login}"></h:outputText>  </td>
+						</tr>
+						<tr>
+							<td>Passwort:</td>
+							<td> <h:outputText value="#{neuerBenutzerController.passwort}"></h:outputText>  </td>
+						</tr>
+						<tr>
+							<td>Rolle:</td>
+							<td> <h:outputText value="#{neuerBenutzerController.rolle}" >
+                </h:outputText>  </td>
+						</tr>
+			</div>
+		</div>
+	</h:form>
+
+
+	<!--   <h:outputLabel value="#{55+11*3}"></h:outputLabel>  -->
+
+</body>
+</html>

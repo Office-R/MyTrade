@@ -99,7 +99,7 @@ public class DividendeDao {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Message", MeldungController.DIVIDENDE);
 		pooling.putConnection(c1);
 	}
-
+	
 	public Double getDividendeInChFPerStk() {
 		return dividendeInChFPerStk;
 	}
@@ -109,8 +109,4 @@ public class DividendeDao {
 			this.dividendeInChFPerStk = dividendeInChFPerStk;
 		}
 	}
-
-	
-	
-	
 }
