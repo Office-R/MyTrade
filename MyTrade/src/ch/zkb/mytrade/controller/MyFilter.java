@@ -18,7 +18,7 @@ public class MyFilter implements Filter {
 	boolean debug = true;
 	private void debugOut(String meldung) {
 		if(debug) {
-			System.out.println("Debug MyAuthFilter." + meldung);
+			System.out.println("Debug MyFilter." + meldung);
 		}
 	}
 	@Override
@@ -45,7 +45,8 @@ public class MyFilter implements Filter {
 
 	String meinPortfolioUrl = "http://localhost:8080/MyTrade/faces/private/mein_portfolio.xhtml";
 	String loginUrl = "http://localhost:8080/MyTrade/faces/login.xhtml";
-
+	String errorUrl = "http://localhost:8080/MyTrade/faces/404.xhtml";
+	
 	boolean istLoginURL(HttpServletRequest request) {
 		String reqString = request.getRequestURI();
 		debugOut("istLoginURL(): reqString: [" + reqString + "]");
@@ -67,6 +68,11 @@ public class MyFilter implements Filter {
 		} catch (Exception ex) {
 			System.out.println("Exception im MyAuthFilter " + ex);
 			ex.printStackTrace();
+			if(ex instanceof java.io.FileNotFoundException)
+			{
+				debugOut("File wurde nicht gefunden");
+				((HttpServletResponse) res).sendRedirect(errorUrl);
+			}
 		}
 	}
 
@@ -102,18 +108,18 @@ public class MyFilter implements Filter {
 			response.sendRedirect(loginUrl);
 			return;
 		}
-		if(user.getRolle() == Rolle.ADMINISTRATOR) {
-			debugOut("eigenerDoHTTPFilter(): Administrator ist angemeldet");
-			chain.doFilter(request, response); // jeder, da öffentlich	
-			return;
-		}
-		System.out.println(user.getRolle());
-		if(user.getRolle() == Rolle.TRADER) {
-			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
-		    holeSessionVariable(request).setAttribute("Message", MeldungController.ACCESS_DENIED);
-			response.sendRedirect(meinPortfolioUrl);
-			return;
-		}
+//		if(user.getRolle() == Rolle.ADMINISTRATOR) {
+//			debugOut("eigenerDoHTTPFilter(): Administrator ist angemeldet");
+//			chain.doFilter(request, response); // jeder, da öffentlich	
+//			return;
+//		}
+//		System.out.println(user.getRolle());
+//		if(user.getRolle() == Rolle.TRADER) {
+//			debugOut("eigenerDoHTTPFilter(): Trader ist angemeldet");
+//		    holeSessionVariable(request).setAttribute("Message", MeldungController.ACCESS_DENIED);
+//			response.sendRedirect(meinPortfolioUrl);
+//			return;
+//		}
 
 		debugOut("  Session: " + holeSessionVariable(request));
 		debugOut("  User:    " + user                        );
