@@ -51,23 +51,13 @@
 					</h:column>
 
 					<h:column id="aktion">
-						<f:facet name="header">Aktion</f:facet>
+						<f:facet name="header">Ausschütten</f:facet>
 
 						<h:commandButton
 							action="#{dividendeController.dividendeDao.ausschuetten(symbol.symbol)}"></h:commandButton>
 
 					</h:column>
 
-				</h:dataTable id="alte_dividende"
-					value="#{dividendeController.dividendeDao.loadLastDividend()}"
-					border="1" var="dividende" emptyMessage="Keine alte alte Dividende vorhandens">
-					
-					<h:column>
-						<f:facet name="header">Letzte Dividende</f:facet>
-						<h:outputText value="${dividende}"></h:outputText>
-					</h:column>						
-				<h:dataTable>
-				
 				</h:dataTable>
 			</h:form>
 		</div>
